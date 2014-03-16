@@ -4,7 +4,240 @@
 
 // Html
 // -------------------------------------------------------------------------------------
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: none;
+	outline: none;
+}
+
+html { 
+	overflow-y: scroll; 
+	-webkit-text-size-adjust: 100%; /* 2 */
+	-ms-text-size-adjust: 100%; /* 2 */	
+}
+
 body {
 	background: $grey-light;
-	color: #333;
+	font: normal 12px $font-default;
+	line-height: 1.4;
+  color: $grey-dark;
+}
+
+input, textarea, select {
+	font-size: 100%;
+}
+
+input, textarea, select, button {
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+input[type=text], input[type=password], input[type=submit], textarea, select, button {
+	-webkit-appearance: none;
+}
+
+img {
+	max-width: 100%;
+	line-height: 0;
+}
+
+a img {
+  border: none;
+}
+
+p, table, dl, fieldset {
+	margin: 0 0 10px 0;
+}
+
+h1, .h1 {
+	margin: 15px 0 10px 0;
+	font-weight: normal;
+	font-size: 22px;
+}
+
+h2, .h2 {
+	margin: 25px 0 10px 0; 
+	font-weight: normal;
+	font-size: 15px;
+}
+
+* h2:first-child, * .h2:first-child {
+	margin: 0 0 10px 0; 
+}
+
+h3, .h3 {
+	margin: 20px 0 0 0;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+a {
+	color: $blue;
+	text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+	color: darken($blue, 10%);
+	text-decoration: underline;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px 8px;
+	text-align: left;
+	vertical-align: top;
+}
+
+thead th {
+	padding: 3px 8px;
+	border-bottom: 2px solid $blue;
+}
+
+tbody th, td {
+	border-top: 1px solid $grey-lighter;
+}
+
+dt {
+	float: left;
+	margin: 0 5px 0 0;
+}
+
+fieldset {
+	padding: 5px 10px;
+	border: 1px solid $grey-lighter;
+}
+
+legend {
+	padding: 0 5px;
+	line-height: 1;
+}
+
+address {
+	font-style: normal;
+}
+
+hr, .hr {
+  height: 1px;
+	margin: 10px 0;
+  border-top: $grey-lighter;
+	background: $grey-lighter;
+	color: $grey-lighter;
+}
+
+.ie :button {
+	width: auto; 
+	overflow: visible;
+}
+
+.ie7 img { 
+	-ms-interpolation-mode: bicubic; 
+}
+
+::-moz-selection { 
+	background: $pink; 
+	color:#fff; 
+	text-shadow: none; 
+}
+
+::selection { 
+	background: $pink; 
+	color:#fff; 
+	text-shadow: none; 
+}
+
+::-webkit-input-placeholder {
+	color: $grey;
+}
+
+::-moz-placeholder {
+	color: $grey;
+}
+
+:-ms-input-placeholder {
+	color: $grey;
+}
+
+input:-moz-placeholder {
+	color: $grey;
+}
+
+article, aside, footer, header, hgroup, nav, section {
+  display: block;
+}
+
+nav li {
+	padding: 0;
+	background: none;
+}
+
+nav a:hover, nav a:focus, nav a:active {
+	text-decoration: none;
+}
+
+// clearfix
+// -------------------------------------------------------------------------------------
+.clearfix:before, .clearfix:after {
+	content: '\0020'; 
+	display: block; 
+	height: 0; 
+	visibility: hidden; 
+}
+
+.clearfix:after { 
+	clear: both; 
+}
+
+.clearfix { 
+	zoom: 1; 
+}
+
+// Planeten
+// -------------------------------------------------------------------------------------
+#universe-container {
+	position: absolute;
+	top: 0; left: 0;
+	bottom: 0; right: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.planet {
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	background: $blue;
+	border: 1px solid $blue-dark;
+	border-radius: 35px;
+}
+
+#planet-01 {
+	top: 120px;
+	left: 35px;
+}
+
+#planet-02 {
+	top: 591px;
+	left: 24px;
+}
+
+#planet-03 {
+	top: 156px;
+	left: 895px;
+}
+
+#planet-04 {
+	top: 326px;
+	left: 495px;
+}
+
+#planet-05 {
+	top: 36px;
+	left: 266px;
 }
