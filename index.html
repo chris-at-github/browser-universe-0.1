@@ -22,7 +22,11 @@
 -->
 
       <script type="text/x-handlebars" data-template-name="planet-layer">
-
+        <div id="planet-layer">
+          {{#each}}
+            <div class="planet">{color}</div>
+          {{/each}}
+        </div>
       </script>
 
       <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
