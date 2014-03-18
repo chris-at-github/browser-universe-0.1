@@ -12,10 +12,10 @@
 	outline: none;
 }
 
-html { 
-	overflow-y: scroll; 
+html {
+	overflow-y: scroll;
 	-webkit-text-size-adjust: 100%; /* 2 */
-	-ms-text-size-adjust: 100%; /* 2 */	
+	-ms-text-size-adjust: 100%; /* 2 */
 }
 
 body {
@@ -59,13 +59,13 @@ h1, .h1 {
 }
 
 h2, .h2 {
-	margin: 25px 0 10px 0; 
+	margin: 25px 0 10px 0;
 	font-weight: normal;
 	font-size: 15px;
 }
 
 * h2:first-child, * .h2:first-child {
-	margin: 0 0 10px 0; 
+	margin: 0 0 10px 0;
 }
 
 h3, .h3 {
@@ -132,24 +132,24 @@ hr, .hr {
 }
 
 .ie :button {
-	width: auto; 
+	width: auto;
 	overflow: visible;
 }
 
-.ie7 img { 
-	-ms-interpolation-mode: bicubic; 
+.ie7 img {
+	-ms-interpolation-mode: bicubic;
 }
 
-::-moz-selection { 
-	background: $pink; 
-	color:#fff; 
-	text-shadow: none; 
+::-moz-selection {
+	background: $pink;
+	color:#fff;
+	text-shadow: none;
 }
 
-::selection { 
-	background: $pink; 
-	color:#fff; 
-	text-shadow: none; 
+::selection {
+	background: $pink;
+	color:#fff;
+	text-shadow: none;
 }
 
 ::-webkit-input-placeholder {
@@ -184,18 +184,18 @@ nav a:hover, nav a:focus, nav a:active {
 // clearfix
 // -------------------------------------------------------------------------------------
 .clearfix:before, .clearfix:after {
-	content: '\0020'; 
-	display: block; 
-	height: 0; 
-	visibility: hidden; 
+	content: '\0020';
+	display: block;
+	height: 0;
+	visibility: hidden;
 }
 
-.clearfix:after { 
-	clear: both; 
+.clearfix:after {
+	clear: both;
 }
 
-.clearfix { 
-	zoom: 1; 
+.clearfix {
+	zoom: 1;
 }
 
 // Planeten
@@ -215,6 +215,10 @@ nav a:hover, nav a:focus, nav a:active {
 	background: $blue;
 	border: 1px solid $blue-dark;
 	border-radius: 35px;
+}
+
+.planet.active {
+	background: $yellow;
 }
 
 #planet-01 {

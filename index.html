@@ -11,31 +11,21 @@
   </head>
   <body>
 
-<!--       
-    <div id="universe-container">
-      <div id="planet-01" class="planet"></div>
-      <div id="planet-02" class="planet"></div>
-      <div id="planet-03" class="planet"></div>
-      <div id="planet-04" class="planet"></div>
-      <div id="planet-05" class="planet"></div>
-    </div> 
--->
-
     <script type="text/x-handlebars" data-template-name="planets">
       <div id="planet-container">
         {{#each}}
-          <div class="planet" {{bind-attr style=style}}></div>
+          <div {{bind-attr class=":planet isActivated:active"}} {{bind-attr style=style}}></div>
         {{/each}}
-      </div> 
+      </div>
     </script>
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript">!window.jQuery && document.write(unescape('%3Cscript type="text/javascript" src="/js/libraries/jquery-2.1.0.min.js"%3E%3C/script%3E'))</script>
 
     <script type="text/javascript" src="/js/libraries/handlebars-1.1.2.js"></script>
-    <script type="text/javascript" src="/js/libraries/ember-1.4.0.js"></script>      
-    <script type="text/javascript" src="/js/libraries/ember-data-1.0.0.js"></script> 
+    <script type="text/javascript" src="/js/libraries/ember-1.4.0.js"></script>
+    <script type="text/javascript" src="/js/libraries/ember-data-1.0.0.js"></script>
 
-    <script type="text/javascript" src="/js/application.js"></script> 
+    <script type="text/javascript" src="/js/application.js"></script>
   </body>
 </html>
