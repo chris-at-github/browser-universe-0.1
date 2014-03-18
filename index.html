@@ -11,21 +11,16 @@
   </head>
   <body>
 
-    <script type="text/x-handlebars" data-template-name="planets">
-      <div id="planet-container">
-        {{#each}}
-          <div {{bind-attr class=":planet isActivated:active"}} {{bind-attr style=style}}></div>
-        {{/each}}
-      </div>
-    </script>
+    <div id="planet-container"></div>
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript">!window.jQuery && document.write(unescape('%3Cscript type="text/javascript" src="/js/libraries/jquery-2.1.0.min.js"%3E%3C/script%3E'))</script>
 
-    <script type="text/javascript" src="/js/libraries/handlebars-1.1.2.js"></script>
-    <script type="text/javascript" src="/js/libraries/ember-1.4.0.js"></script>
-    <script type="text/javascript" src="/js/libraries/ember-data-1.0.0.js"></script>
+    <!-- // <script type="text/javascript" src="/js/libraries/handlebars-1.1.2.js"></script> -->
+    <script type="text/javascript" src="/js/libraries/underscore-1.6.0.js"></script>
+    <script type="text/javascript" src="/js/libraries/backbone-1.1.2.js"></script>
 
+    <script type="text/javascript" src="/js/namespace.js"></script>
     <script type="text/javascript" src="/js/application.js"></script>
   </body>
 </html>
