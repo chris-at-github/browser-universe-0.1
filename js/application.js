@@ -4,7 +4,8 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 		position: {
 			x: 0,
 			y: 0
-		}
+		},
+		active: false
 	},
 	initialize: function() {
 	  console.log('Welcome to the Universe');
@@ -31,6 +32,7 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 
 	initialize: function() {
 		console.log('Print the Universe');
+		this.listenTo(this.model, 'change', this.render);
 	},
 
 	render: function() {
@@ -42,11 +44,19 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 			left: position.x,
 		});
 
+		// aktive Klasse
+		if(this.model.get('active') === true) {
+			this.$el.addClass('active');
+		}
+
 		return this.el;
 	},
 
 	onFocus: function() {
 		console.log('Activate the Planet');
+
+		// neue Klasse setzen
+		this.$el.addClass('active');
 	}
 });
 

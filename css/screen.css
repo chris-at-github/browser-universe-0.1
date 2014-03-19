@@ -172,7 +172,8 @@ nav a:hover, nav a:focus, nav a:active {
   border-radius: 35px; }
 
 .planet.active {
-  background: #fff911; }
+  background: #fff911;
+  border-color: #f5e100; }
 
 #planet-01 {
   top: 120px;
