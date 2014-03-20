@@ -201,9 +201,6 @@ nav a:hover, nav a:focus, nav a:active {
   right: 20px;
   width: 445px;
   min-height: 300px;
+  padding: 10px;
   border: 3px solid #cccccc;
   background: #fff; }
-
-#planet-modal {
-  height: 50px;
-  border: 3px solid #f41c54; }
