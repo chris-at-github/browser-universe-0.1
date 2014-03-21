@@ -11,7 +11,8 @@ Universe.Application.Fixtures.Planet = [
 		position: {
 			x: 15,
 			y: 32
-		}
+		},
+		active: true
 	},
 	{
 		color: 'green',

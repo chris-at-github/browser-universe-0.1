@@ -16,7 +16,15 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 // ---
 
 Universe.Application.Collections.Planet = Backbone.Collection.extend({
-  model: Universe.Application.Models.Planet
+  model: Universe.Application.Models.Planet,
+
+  findActive: function() {
+  	return _.find(this.models, function(planet) {
+  		if(planet.get('active') === true) {
+  			return planet;
+  		}
+  	});
+  }
 });
 
 // ---
@@ -146,7 +154,4 @@ $(function() {
 		collection: planetCollection
 	});
 	Page.append(planetCollectionView.render());
-
-	// var PlanetContainer = $('#planet-container');
-	// 		PlanetContainer.append(PlanetView.render());
 });
