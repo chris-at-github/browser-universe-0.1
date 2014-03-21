@@ -6,7 +6,8 @@ var Universe = {};
 Universe.Application = {
 	Models : {},
 	Collections : {},
-	Views : {}
+	Views : {},
+	Fixtures: {}
 };
 
 // -------------------------------------------------------------------------------------------------

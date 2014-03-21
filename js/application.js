@@ -7,6 +7,7 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 		},
 		active: false
 	},
+
 	initialize: function() {
 	  console.log('Welcome to the Universe');
 	}
@@ -88,6 +89,14 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 PlanetView = new Universe.Application.Views.Planet({
 	model: PlanetModel
 });
+
+// ---
+
+Universe.Application.Collections.Planet = Backbone.Collection.extend({
+  model: Universe.Application.Models.Planet
+});
+
+PlanetCollection = new Universe.Application.Collections.Planet(Universe.Application.Fixtures.Planet);
 
 // ---
 
