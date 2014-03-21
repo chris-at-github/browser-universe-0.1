@@ -13,12 +13,10 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 	}
 });
 
-PlanetModel = new Universe.Application.Models.Planet({
-	color: 'green',
-	position: {
-		x: 15,
-		y: 15
-	}
+// ---
+
+Universe.Application.Collections.Planet = Backbone.Collection.extend({
+  model: Universe.Application.Models.Planet
 });
 
 // ---
@@ -82,21 +80,34 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		this.$el.addClass('active');
 
 		// Modal-Inhalt setzen
-		Modal.setBody(this.modal.render());
+		Universe.Modal.setBody(this.modal.render());
 	}
-});
-
-PlanetView = new Universe.Application.Views.Planet({
-	model: PlanetModel
 });
 
 // ---
 
-Universe.Application.Collections.Planet = Backbone.Collection.extend({
-  model: Universe.Application.Models.Planet
-});
+Universe.Application.Views.PlanetCollection = Backbone.View.extend({
+	tagName: 'div',
+	id: 'planet-container',
 
-PlanetCollection = new Universe.Application.Collections.Planet(Universe.Application.Fixtures.Planet);
+	initialize: function() {
+		console.log('Print the hole Universe');
+	},
+
+	render: function() {
+		var self = this;
+
+		_(this.collection.models).each(function(planetModel) {
+			var planetView = new Universe.Application.Views.Planet({
+				model: planetModel
+			});
+
+			self.$el.append(planetView.render());
+		});
+
+		return this.el;
+	}
+});
 
 // ---
 
@@ -117,14 +128,25 @@ Universe.Application.Views.Modal = Backbone.View.extend({
 	}
 });
 
-Modal = new Universe.Application.Views.Modal();
-
 // ---
-
 $(function() {
-	var Page = $('body');
-			Page.append(Modal.render());
 
-	var PlanetContainer = $('#planet-container');
-			PlanetContainer.append(PlanetView.render());
+	// Layout
+	Universe.Modal = new Universe.Application.Views.Modal();
+
+	var Page = $('body');
+			Page.append(Universe.Modal.render());
+
+	// Planeten
+	var planetCollection = new Universe.Application.Collections.Planet(
+		Universe.Application.Fixtures.Planet
+	);
+
+	var planetCollectionView = new Universe.Application.Views.PlanetCollection({
+		collection: planetCollection
+	});
+	Page.append(planetCollectionView.render());
+
+	// var PlanetContainer = $('#planet-container');
+	// 		PlanetContainer.append(PlanetView.render());
 });
