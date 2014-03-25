@@ -10,6 +10,14 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 
 	initialize: function() {
 	  console.log('Welcome to the Universe');
+	  this.on('change:active', function(object, value) {
+	  	if(value === true) {
+	  		this.trigger('focus');
+
+	  	} else {
+	  		this.trigger('blur');
+	  	}
+	  });
 	}
 });
 
@@ -18,12 +26,31 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 Universe.Application.Collections.Planet = Backbone.Collection.extend({
   model: Universe.Application.Models.Planet,
 
+	initialize: function() {
+	  this.on('add', this.onAdd, this);
+
+	  console.log('Collect the Universe');
+	},
+
+	onAdd: function(planet) {
+		_.bindAll(this, 'toggleActive');
+		planet.on('focus', this.toggleActive);
+	},
+
   findActive: function() {
   	return _.find(this.models, function(planet) {
   		if(planet.get('active') === true) {
   			return planet;
   		}
   	});
+  },
+
+  toggleActive: function() {
+  	var active = this.findActive();
+
+  	if(active !== undefined) {
+  		active.set('active', false);
+  	}
   }
 });
 
@@ -57,6 +84,9 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 	initialize: function() {
 		console.log('Print the Universe');
 		this.listenTo(this.model, 'change', this.render);
+		// this.listenTo(this.model, 'blur', function() {
+		// 	alert(2);
+		// });
 
 		// Modal fuer die Ausgabe registrieren
 		this.modal =  new Universe.Application.Views.PlanetModal({
@@ -76,6 +106,9 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		// aktive Klasse
 		if(this.model.get('active') === true) {
 			this.$el.addClass('active');
+
+		} else {
+			this.$el.removeClass('active');
 		}
 
 		return this.el;
@@ -84,8 +117,8 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 	onFocus: function() {
 		console.log('Activate the Planet');
 
-		// neue Klasse setzen
-		this.$el.addClass('active');
+		// Event werfen
+		this.model.set('active', true);
 
 		// Modal-Inhalt setzen
 		Universe.Modal.setBody(this.modal.render());
@@ -146,9 +179,8 @@ $(function() {
 			Page.append(Universe.Modal.render());
 
 	// Planeten
-	var planetCollection = new Universe.Application.Collections.Planet(
-		Universe.Application.Fixtures.Planet
-	);
+	var planetCollection = new Universe.Application.Collections.Planet();
+			planetCollection.add(Universe.Application.Fixtures.Planet);
 
 	var planetCollectionView = new Universe.Application.Views.PlanetCollection({
 		collection: planetCollection
