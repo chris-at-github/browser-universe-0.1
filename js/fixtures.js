@@ -22,6 +22,16 @@ Universe.Application.Fixtures.Planet = [
 			x: 192,
 			y: 105
 		},
-		active: true
+		active: true,
+		player: 1
+	}
+];
+
+// ---
+
+Universe.Application.Fixtures.Player = [
+	{
+		id: 1,
+		name: 'Player A'
 	}
 ];

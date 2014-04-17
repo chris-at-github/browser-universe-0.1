@@ -10,7 +10,8 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 		size: {
 			width: 34,
 			height: 34
-		}
+		},
+		player: null
 	},
 
 	initialize: function() {
@@ -22,7 +23,20 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 	  		this.trigger('deactivate');
 	  	}
 	  });
-	}
+	},
+
+  get: function (attr) {
+  	var getter = 'get' + attr.ucfirst();
+
+    if(typeof this[getter] === 'function') {
+      return this[getter]();
+    }
+    return Backbone.Model.prototype.get.call(this, attr);
+  },
+
+  getPlayer: function() {
+    player = Backbone.Model.prototype.get.call(this, 'player');
+  }
 });
 
 // ---

@@ -1,3 +1,9 @@
+String.prototype.ucfirst = function() {
+	return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+// ---
+
 Universe.Application.Views.Modal = Backbone.View.extend({
 	tagName: 'div',
 	id: 'modal',
@@ -19,6 +25,7 @@ Universe.Application.Views.Modal = Backbone.View.extend({
 });
 
 // ---
+
 $(function() {
 
 	// Layout
@@ -26,6 +33,10 @@ $(function() {
 
 	var Page = $('body');
 			Page.append(Universe.Modal.render());
+
+	// Player
+	var playerCollection = new Universe.Application.Collections.Player();
+			playerCollection.add(Universe.Application.Fixtures.Player);
 
 	// Planeten
 	var planetCollection = new Universe.Application.Collections.Planet();
