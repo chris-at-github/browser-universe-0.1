@@ -1,6 +1,7 @@
 Universe.Application.Models.Planet = Backbone.Model.extend({
 	defaults: {
-		color: 'blue',
+		name: null,
+		type: null,
 		position: {
 			x: 0,
 			y: 0

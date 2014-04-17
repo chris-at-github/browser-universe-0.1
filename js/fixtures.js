@@ -1,13 +1,15 @@
 Universe.Application.Fixtures.Planet = [
 	{
-		color: 'blue',
+		name: 'Tilion',
+		type: 'terrestrial',
 		position: {
 			x: 102,
 			y: 48
 		}
 	},
 	{
-		color: 'green',
+		name: 'Balo',
+		type: 'stony',
 		position: {
 			x: 15,
 			y: 32
@@ -15,7 +17,8 @@ Universe.Application.Fixtures.Planet = [
 		active: false
 	},
 	{
-		color: 'red',
+		name: 'Mirus',
+		type: 'aqueous',
 		position: {
 			x: 192,
 			y: 105
