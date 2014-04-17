@@ -6,7 +6,11 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 			x: 0,
 			y: 0
 		},
-		active: false
+		active: false,
+		size: {
+			width: 34,
+			height: 34
+		}
 	},
 
 	initialize: function() {
@@ -34,18 +38,14 @@ Universe.Application.Collections.Planet = Backbone.Collection.extend({
 	onAdd: function(planet) {
 		var instance = this;
 
+		if(planet.get('active') === true) {
+			this.active = planet;
+		}
+
 		planet.on('activate', function() {
 			instance.toggleActive(this);
 		});
 	},
-
-  findActive: function() {
-  	return _.find(this.models, function(planet) {
-  		if(planet.get('active') === true) {
-  			return planet;
-  		}
-  	});
-  },
 
   toggleActive: function(planet) {
   	if(this.active !== null) {
@@ -85,6 +85,11 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 	initialize: function() {
 		var instance = this;
 
+		// Modal fuer die Ausgabe registrieren
+		this.modal = new Universe.Application.Views.PlanetModal({
+			model: this.model
+		});
+
 		this.model
 			.on('activate', function() {
 				instance.onActivate();
@@ -93,20 +98,26 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 				instance.onDeactivate();
 			});
 
-		// Modal fuer die Ausgabe registrieren
-		this.modal =  new Universe.Application.Views.PlanetModal({
-			model: this.model
-		});
+		if(this.model.get('active') === true) {
+			this.onActivate();
+		}
+	},
+
+	getRenderPosition: function() {
+		var position 	= this.model.get('position');
+		var size			= this.model.get('size');
+
+		return {
+			top: 	position.y - (size.height / 2),
+			left: position.x - (size.width / 2)
+		}
 	},
 
 	render: function() {
+		this.getRenderPosition();
 
 		// X / Y Position setzen
-		var position = this.model.get('position');
-		this.$el.css({
-			top: 	position.y,
-			left: position.x,
-		});
+		this.$el.css(this.getRenderPosition());
 
 		// aktive Klasse
 		if(this.model.get('active') === true) {

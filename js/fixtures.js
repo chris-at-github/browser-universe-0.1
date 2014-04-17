@@ -11,10 +11,9 @@ Universe.Application.Fixtures.Planet = [
 		name: 'Balo',
 		type: 'stony',
 		position: {
-			x: 15,
-			y: 32
-		},
-		active: false
+			x: 50,
+			y: 160
+		}
 	},
 	{
 		name: 'Mirus',
@@ -22,6 +21,7 @@ Universe.Application.Fixtures.Planet = [
 		position: {
 			x: 192,
 			y: 105
-		}
+		},
+		active: true
 	}
 ];

@@ -1,3 +1,9 @@
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg); }
+
+  100% {
+    -webkit-transform: rotate(360deg); } }
 * {
   margin: 0;
   padding: 0;
@@ -13,10 +19,10 @@ html {
   /* 2 */ }
 
 body {
-  background: #f8f8f8;
+  background: #e7e7e9;
   font: normal 12px "Segoe UI", Arial, sans-serif;
   line-height: 1.4;
-  color: #333333; }
+  color: #414244; }
 
 input, textarea, select {
   font-size: 100%; }
@@ -79,7 +85,7 @@ thead th {
   border-bottom: 2px solid #0091c8; }
 
 tbody th, td {
-  border-top: 1px solid #cccccc; }
+  border-top: 1px solid #e2e2e4; }
 
 dt {
   float: left;
@@ -87,7 +93,7 @@ dt {
 
 fieldset {
   padding: 5px 10px;
-  border: 1px solid #cccccc; }
+  border: 1px solid #e2e2e4; }
 
 legend {
   padding: 0 5px;
@@ -99,9 +105,9 @@ address {
 hr, .hr {
   height: 1px;
   margin: 10px 0;
-  border-top: #cccccc;
-  background: #cccccc;
-  color: #cccccc; }
+  border-top: #e2e2e4;
+  background: #e2e2e4;
+  color: #e2e2e4; }
 
 .ie :button {
   width: auto;
@@ -111,26 +117,26 @@ hr, .hr {
   -ms-interpolation-mode: bicubic; }
 
 ::-moz-selection {
-  background: #f41c54;
+  background: #f15c22;
   color: #fff;
   text-shadow: none; }
 
 ::selection {
-  background: #f41c54;
+  background: #f15c22;
   color: #fff;
   text-shadow: none; }
 
 ::-webkit-input-placeholder {
-  color: #333333; }
+  color: #d3d3d5; }
 
 ::-moz-placeholder {
-  color: #333333; }
+  color: #d3d3d5; }
 
 :-ms-input-placeholder {
-  color: #333333; }
+  color: #d3d3d5; }
 
 input:-moz-placeholder {
-  color: #333333; }
+  color: #d3d3d5; }
 
 article, aside, footer, header, hgroup, nav, section {
   display: block; }
@@ -165,15 +171,23 @@ nav a:hover, nav a:focus, nav a:active {
 
 .planet {
   position: absolute;
-  width: 35px;
-  height: 35px;
-  background: #0091c8;
-  border: 1px solid #007dad;
-  border-radius: 35px; }
+  width: 34px;
+  height: 34px;
+  background: #d3d3d5;
+  border-radius: 34px; }
 
-.planet.active {
-  background: #fff911;
-  border-color: #f5e100; }
+.planet.active:before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  z-index: -1;
+  width: 42px;
+  height: 42px;
+  display: block;
+  border: 2px dashed #f15c22;
+  border-radius: 42px;
+  -webkit-animation: rotate 35s infinite linear; }
 
 #planet-01 {
   top: 120px;
@@ -202,5 +216,5 @@ nav a:hover, nav a:focus, nav a:active {
   width: 445px;
   min-height: 300px;
   padding: 10px;
-  border: 3px solid #cccccc;
+  border: 3px solid #e2e2e4;
   background: #fff; }

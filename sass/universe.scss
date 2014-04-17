@@ -4,17 +4,25 @@ $font-default: 'Segoe UI', Arial, sans-serif;
 
 // Colors
 // -------------------------------------------------------------------------------------
-$grey-light: 		#f8f8f8;
-$grey-lighter: 	#ccc;
-$grey: 					#333;
-$grey-darker:		#333;
-$grey-dark: 		#333;
+$grey-light: 		#e7e7e9;
+$grey-lighter: 	#e2e2e4;
+$grey: 					#d3d3d5;
+$grey-darker:		#636466;
+$grey-dark: 		#414244;
 
 $blue:				#0091c8;
 $blue-dark:		#007dad;
 
-$green:				#c1c923;
-$pink:				#f41c54;
+$orange:			#f15c22;
+$orange-dark:	#c65e37;
 
-$yellow:			#fff911;
-$yellow-dark:	#f5e100;
+// Animation
+// -------------------------------------------------------------------------------------
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
