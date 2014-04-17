@@ -9,13 +9,12 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 	},
 
 	initialize: function() {
-	  console.log('Welcome to the Universe');
 	  this.on('change:active', function(object, value) {
 	  	if(value === true) {
-	  		this.trigger('focus');
+	  		this.trigger('activate');
 
 	  	} else {
-	  		this.trigger('blur');
+	  		this.trigger('deactivate');
 	  	}
 	  });
 	}
@@ -25,16 +24,18 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 
 Universe.Application.Collections.Planet = Backbone.Collection.extend({
   model: Universe.Application.Models.Planet,
+  active: null,
 
 	initialize: function() {
 	  this.on('add', this.onAdd, this);
-
-	  console.log('Collect the Universe');
 	},
 
 	onAdd: function(planet) {
-		_.bindAll(this, 'toggleActive');
-		planet.on('focus', this.toggleActive);
+		var instance = this;
+
+		planet.on('activate', function() {
+			instance.toggleActive(this);
+		});
 	},
 
   findActive: function() {
@@ -45,12 +46,12 @@ Universe.Application.Collections.Planet = Backbone.Collection.extend({
   	});
   },
 
-  toggleActive: function() {
-  	var active = this.findActive();
-
-  	if(active !== undefined) {
-  		active.set('active', false);
+  toggleActive: function(planet) {
+  	if(this.active !== null) {
+  		this.active.set('active', false);
   	}
+
+  	this.active = planet;
   }
 });
 
@@ -62,7 +63,6 @@ Universe.Application.Views.PlanetModal = Backbone.View.extend({
 	id: 'planet-modal',
 
 	initialize: function() {
-		console.log('Tell the Planet');
 	},
 
 	render: function() {
@@ -78,15 +78,19 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 	className: 'planet',
 
 	events: {
-		'click': 'onFocus',
+		'click': 'onActivate',
 	},
 
 	initialize: function() {
-		console.log('Print the Universe');
-		this.listenTo(this.model, 'change', this.render);
-		// this.listenTo(this.model, 'blur', function() {
-		// 	alert(2);
-		// });
+		var instance = this;
+
+		this.model
+			.on('activate', function() {
+				instance.onActivate();
+			})
+			.on('deactivate', function() {
+				instance.onDeactivate();
+			});
 
 		// Modal fuer die Ausgabe registrieren
 		this.modal =  new Universe.Application.Views.PlanetModal({
@@ -114,14 +118,42 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		return this.el;
 	},
 
-	onFocus: function() {
-		console.log('Activate the Planet');
+	onActivate: function(e) {
+
+		// Click-Event stoppen
+		if(e !== undefined) {
+			e.stopImmediatePropagation();
+		}
 
 		// Event werfen
-		this.model.set('active', true);
+		if(this.model.get('active') === false) {
+			this.model.set('active', true);
+		}
+
+		// View neu rendern
+		this.render();
 
 		// Modal-Inhalt setzen
 		Universe.Modal.setBody(this.modal.render());
+	},
+
+	onDeactivate: function(e) {
+
+		// Click-Event stoppen
+		if(e !== undefined) {
+			e.stopImmediatePropagation();
+		}
+
+		// Event werfen
+		if(this.model.get('active') === true) {
+			this.model.set('active', false);
+		}
+
+		// View neu rendern
+		this.render();
+
+		// Modal-Inhalt setzen
+		Universe.Modal.close();
 	}
 });
 
@@ -131,8 +163,11 @@ Universe.Application.Views.PlanetCollection = Backbone.View.extend({
 	tagName: 'div',
 	id: 'planet-container',
 
+	events: {
+		'click': 'onClick',
+	},
+
 	initialize: function() {
-		console.log('Print the hole Universe');
 	},
 
 	render: function() {
@@ -147,6 +182,10 @@ Universe.Application.Views.PlanetCollection = Backbone.View.extend({
 		});
 
 		return this.el;
+	},
+
+	onClick: function() {
+		this.collection.toggleActive(null);
 	}
 });
 
@@ -157,7 +196,10 @@ Universe.Application.Views.Modal = Backbone.View.extend({
 	id: 'modal',
 
 	initialize: function() {
-		console.log('Tell the Universe');
+	},
+
+	close: function() {
+		this.$el.html(null);
 	},
 
 	setBody: function(body) {
