@@ -11,7 +11,7 @@
   </head>
   <body>
 
-    <script type="text/template" id="tmpl-planet-modal">
+    <script type="text/template" id="tmpl-planet-container">
       <dl>
         <dt>Name:</dt>
         <dd><%= planet.get('name') %></dd>
@@ -19,8 +19,10 @@
         <dt>Typ:</dt>
         <dd><%= planet.get('type') %></dd>
 
-        <dt>Player:</dt>
-        <dd><%= planet.get('player') %></dd>
+        <% if(planet.get('player') !== null) { %>
+          <dt>Player:</dt>
+          <dd><%= planet.get('player').get('name') %></dd>
+        <% } %>
       </dl>
     </script>
 
@@ -33,8 +35,8 @@
 
     <script type="text/javascript" src="/js/namespace.js"></script>
     <script type="text/javascript" src="/js/fixtures.js"></script>
+    <script type="text/javascript" src="/js/application.js"></script>
     <script type="text/javascript" src="/js/player.js"></script>
     <script type="text/javascript" src="/js/planet.js"></script>
-    <script type="text/javascript" src="/js/application.js"></script>
   </body>
 </html>

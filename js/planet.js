@@ -35,7 +35,13 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
   },
 
   getPlayer: function() {
-    player = Backbone.Model.prototype.get.call(this, 'player');
+  	player = Backbone.Model.prototype.get.call(this, 'player');
+
+  	if(player !== null) {
+  		player = Universe.Registry.PlayerCollection.get(player);
+  	}
+
+    return player;
   }
 });
 
@@ -72,13 +78,8 @@ Universe.Application.Collections.Planet = Backbone.Collection.extend({
 
 // ---
 
-Universe.Application.Views.PlanetModal = Backbone.View.extend({
-	template: _.template($('#tmpl-planet-modal').html()),
-	tagName: 'div',
-	id: 'planet-modal',
-
-	initialize: function() {
-	},
+Universe.Application.Views.PlanetContainer = Universe.Application.Views.Container.extend({
+	template: _.template($('#tmpl-planet-container').html()),
 
 	render: function() {
 		this.$el.html(this.template({planet: this.model}));
@@ -100,7 +101,7 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		var instance = this;
 
 		// Modal fuer die Ausgabe registrieren
-		this.modal = new Universe.Application.Views.PlanetModal({
+		this.container = new Universe.Application.Views.PlanetContainer({
 			model: this.model
 		});
 
@@ -160,7 +161,7 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		this.render();
 
 		// Modal-Inhalt setzen
-		Universe.Modal.setBody(this.modal.render());
+		Universe.Registry.Sidebar.add(this.container);
 	},
 
 	onDeactivate: function(e) {
@@ -179,7 +180,7 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		this.render();
 
 		// Modal-Inhalt setzen
-		Universe.Modal.close();
+		// Universe.Modal.close();
 	}
 });
 

@@ -10,6 +10,9 @@ Universe.Application = {
 	Fixtures: {}
 };
 
+// Registry
+Universe.Registry = {};
+
 // -------------------------------------------------------------------------------------------------
 // Backbone.emulate
 Backbone.emulateHTTP = false;

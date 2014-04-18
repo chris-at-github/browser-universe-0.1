@@ -160,6 +160,26 @@ nav a:hover, nav a:focus, nav a:active {
 .clearfix {
   zoom: 1; }
 
+#sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 400px;
+  height: 100%; }
+
+.container {
+  margin: 0 0 10px 0;
+  padding: 10px;
+  border: 3px solid #e2e2e4;
+  background: #fff; }
+
+.container:first-child {
+  margin: 0; }
+
+.container > *:last-child {
+  margin: 0; }
+
 #planet-container {
   position: absolute;
   top: 0;
@@ -208,13 +228,3 @@ nav a:hover, nav a:focus, nav a:active {
 #planet-05 {
   top: 36px;
   left: 266px; }
-
-#modal {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 445px;
-  min-height: 300px;
-  padding: 10px;
-  border: 3px solid #e2e2e4;
-  background: #fff; }

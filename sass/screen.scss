@@ -198,6 +198,31 @@ nav a:hover, nav a:focus, nav a:active {
 	zoom: 1;
 }
 
+// Layout
+// -------------------------------------------------------------------------------------
+#sidebar {
+	position: absolute;
+	top: 0; bottom: 0;
+	right: 0;
+	width: 400px;
+	height: 100%;
+}
+
+.container {
+	margin: 0 0 10px 0;
+	padding: 10px;
+	border: 3px solid $grey-lighter;
+	background: #fff;
+}
+
+.container:first-child {
+	margin: 0;
+}
+
+.container > *:last-child {
+	margin: 0;
+}
+
 // Planeten
 // -------------------------------------------------------------------------------------
 #planet-container {
@@ -256,12 +281,12 @@ nav a:hover, nav a:focus, nav a:active {
 
 // Modal
 // -------------------------------------------------------------------------------------
-#modal {
-	position: absolute;
-	top: 20px; right: 20px;
-	width: 445px;
-	min-height: 300px;
-	padding: 10px;
-	border: 3px solid $grey-lighter;
-	background: #fff;
-}
+// #modal {
+// 	position: absolute;
+// 	top: 20px; right: 20px;
+// 	width: 445px;
+// 	min-height: 300px;
+// 	padding: 10px;
+// 	border: 3px solid $grey-lighter;
+// 	background: #fff;
+// }
