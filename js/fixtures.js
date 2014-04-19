@@ -33,5 +33,9 @@ Universe.Application.Fixtures.Player = [
 	{
 		id: 1,
 		name: 'Player A'
+	},
+	{
+		id: 2,
+		name: 'Player B'
 	}
 ];

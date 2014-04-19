@@ -90,7 +90,7 @@ $(function() {
 			// Page.append(Universe.Modal.render());
 			Page.append(Universe.Registry.Sidebar.render());
 
-	// Player
+	// Player registieren
 	Universe.Registry.PlayerCollection = new Universe.Application.Collections.Player();
 	Universe.Registry.PlayerCollection.add(Universe.Application.Fixtures.Player);
 
@@ -102,4 +102,10 @@ $(function() {
 		collection: planetCollection
 	});
 	Page.append(planetCollectionView.render());
+
+	// Player ausgeben
+	var playerCollectionView = new Universe.Application.Views.PlayerCollection({
+		collection: Universe.Registry.PlayerCollection
+	});
+	Universe.Registry.Sidebar.add(playerCollectionView);
 });

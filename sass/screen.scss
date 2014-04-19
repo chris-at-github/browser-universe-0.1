@@ -279,6 +279,22 @@ nav a:hover, nav a:focus, nav a:active {
 	left: 266px;
 }
 
+// Spieler
+// -------------------------------------------------------------------------------------
+#player-container > div {
+	padding: 5px 0;
+	border-top: 1px solid $grey-lighter;
+}
+
+#player-container > div:first-child {
+	padding: 0 0 5px 0;
+	border: 0;
+}
+
+#player-container > div:last-child {
+	padding: 5px 0 0 0;
+}
+
 // Modal
 // -------------------------------------------------------------------------------------
 // #modal {

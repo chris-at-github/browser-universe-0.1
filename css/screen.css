@@ -228,3 +228,14 @@ nav a:hover, nav a:focus, nav a:active {
 #planet-05 {
   top: 36px;
   left: 266px; }
+
+#player-container > div {
+  padding: 5px 0;
+  border-top: 1px solid #e2e2e4; }
+
+#player-container > div:first-child {
+  padding: 0 0 5px 0;
+  border: 0; }
+
+#player-container > div:last-child {
+  padding: 5px 0 0 0; }

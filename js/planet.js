@@ -137,7 +137,6 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 	},
 
 	render: function() {
-		this.getRenderPosition();
 
 		// X / Y Position setzen
 		this.$el.css(this.getRenderPosition());
