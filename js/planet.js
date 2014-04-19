@@ -15,48 +15,48 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 	},
 
 	initialize: function() {
-	  this.on('change:active', function(object, value) {
-	  	if(value === true) {
-	  		this.trigger('activate');
+		this.on('change:active', function(object, value) {
+			if(value === true) {
+				this.trigger('activate');
 
-	  	} else {
-	  		this.trigger('deactivate');
-	  	}
-	  });
+			} else {
+				this.trigger('deactivate');
+			}
+		});
 	},
 
-  get: function (attr) {
-  	var getter = 'get' + attr.ucfirst();
+	get: function (attr) {
+		var getter = 'get' + attr.ucfirst();
 
-    if(typeof this[getter] === 'function') {
-      return this[getter]();
-    }
-    return Backbone.Model.prototype.get.call(this, attr);
-  },
+		if(typeof this[getter] === 'function') {
+			return this[getter]();
+		}
+		return Backbone.Model.prototype.get.call(this, attr);
+	},
 
-  getPlayer: function() {
-  	player = Backbone.Model.prototype.get.call(this, 'player');
+	getPlayer: function() {
+		player = Backbone.Model.prototype.get.call(this, 'player');
 
-  	if(player !== null) {
-  		player = Universe.Registry.PlayerCollection.get(player);
-  	}
+		if(player !== null) {
+			player = Universe.Registry.PlayerCollection.get(player);
+		}
 
-    return player;
-  }
+		return player;
+	}
 });
 
 // ---
 
 Universe.Application.Collections.Planet = Backbone.Collection.extend({
-  model: Universe.Application.Models.Planet,
-  active: null,
+	model: Universe.Application.Models.Planet,
+	active: null,
 
 	initialize: function() {
-	  this.on('add', this.onAdd, this);
+		this.on('add', this.onAdd, this);
 	},
 
 	onAdd: function(planet) {
-		var instance = this;
+		var instance 	= this;
 
 		if(planet.get('active') === true) {
 			this.active = planet;
@@ -67,13 +67,13 @@ Universe.Application.Collections.Planet = Backbone.Collection.extend({
 		});
 	},
 
-  toggleActive: function(planet) {
-  	if(this.active !== null) {
-  		this.active.set('active', false);
-  	}
+	toggleActive: function(planet) {
+		if(this.active !== null) {
+			this.active.set('active', false);
+		}
 
-  	this.active = planet;
-  }
+		this.active = planet;
+	}
 });
 
 // ---
@@ -81,8 +81,12 @@ Universe.Application.Collections.Planet = Backbone.Collection.extend({
 Universe.Application.Views.PlanetContainer = Universe.Application.Views.Container.extend({
 	template: _.template($('#tmpl-planet-container').html()),
 
-	render: function() {
-		this.$el.html(this.template({planet: this.model}));
+	render: function(model) {
+		if(model === undefined) {
+			model = this.model;
+		}
+
+		this.$el.html(this.template({planet: model}));
 		return this.el;
 	}
 });
@@ -101,9 +105,13 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		var instance = this;
 
 		// Modal fuer die Ausgabe registrieren
-		this.container = new Universe.Application.Views.PlanetContainer({
-			model: this.model
-		});
+		if(Universe.Registry.PlanetContainer === undefined) {
+			Universe.Registry.PlanetContainer = new Universe.Application.Views.PlanetContainer({
+				model: this.model
+			});
+			Universe.Registry.Sidebar.add(Universe.Registry.PlanetContainer);
+		}
+		this.container = Universe.Registry.PlanetContainer;
 
 		this.model
 			.on('activate', function() {
@@ -160,8 +168,8 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		// View neu rendern
 		this.render();
 
-		// Modal-Inhalt setzen
-		Universe.Registry.Sidebar.add(this.container);
+		// Sidebar-Inhalt setzen
+		this.container.render(this.model);
 	},
 
 	onDeactivate: function(e) {
@@ -180,7 +188,7 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 		this.render();
 
 		// Modal-Inhalt setzen
-		// Universe.Modal.close();
+		this.container.close();
 	}
 });
 
