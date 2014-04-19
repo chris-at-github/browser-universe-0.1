@@ -195,7 +195,7 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 
 Universe.Application.Views.PlanetCollection = Backbone.View.extend({
 	tagName: 'div',
-	id: 'planet-container',
+	id: 'planet-layer',
 
 	events: {
 		'click': 'onClick',
