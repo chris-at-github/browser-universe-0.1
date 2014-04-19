@@ -39,3 +39,12 @@ Universe.Application.Fixtures.Player = [
 		name: 'Player B'
 	}
 ];
+
+// ---
+
+Universe.Application.Fixtures.Building = [
+	{
+		id: 1,
+		name: 'Bodenstation'
+	},
+];
