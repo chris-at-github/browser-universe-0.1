@@ -90,28 +90,28 @@ $(function() {
 			// Page.append(Universe.Modal.render());
 			Page.append(Universe.Registry.Sidebar.render());
 
-	// Player registieren
-	if(Universe.Application.Collections.Player !== undefined) {
-		Universe.Registry.PlayerCollection = new Universe.Application.Collections.Player();
-		Universe.Registry.PlayerCollection.add(Universe.Application.Fixtures.Player);
-	}
+	// // Player registieren
+	// if(Universe.Application.Collections.Player !== undefined) {
+	// 	Universe.Registry.PlayerCollection = new Universe.Application.Collections.Player();
+	// 	Universe.Registry.PlayerCollection.add(Universe.Application.Fixtures.Player);
+	// }
 
-	// Planeten
-	if(Universe.Application.Collections.Planet !== undefined) {
-		var planetCollection = new Universe.Application.Collections.Planet();
-				planetCollection.add(Universe.Application.Fixtures.Planet);
+	// // Planeten
+	// if(Universe.Application.Collections.Planet !== undefined) {
+	// 	var planetCollection = new Universe.Application.Collections.Planet();
+	// 			planetCollection.add(Universe.Application.Fixtures.Planet);
 
-		var planetCollectionView = new Universe.Application.Views.PlanetCollection({
-			collection: planetCollection
-		});
-		Page.append(planetCollectionView.render());
-	}
+	// 	var planetCollectionView = new Universe.Application.Views.PlanetCollection({
+	// 		collection: planetCollection
+	// 	});
+	// 	Page.append(planetCollectionView.render());
+	// }
 
-	// Player ausgeben
-	if(Universe.Application.Collections.Player !== undefined) {
-		var playerCollectionView = new Universe.Application.Views.PlayerCollection({
-			collection: Universe.Registry.PlayerCollection
-		});
-		Universe.Registry.Sidebar.add(playerCollectionView);
-	}
+	// // Player ausgeben
+	// if(Universe.Application.Collections.Player !== undefined) {
+	// 	var playerCollectionView = new Universe.Application.Views.PlayerCollection({
+	// 		collection: Universe.Registry.PlayerCollection
+	// 	});
+	// 	Universe.Registry.Sidebar.add(playerCollectionView);
+	// }
 });
