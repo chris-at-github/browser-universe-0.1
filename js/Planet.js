@@ -14,6 +14,10 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 		player: null
 	},
 
+	store: {
+		building: null
+	},
+
 	initialize: function() {
 		this.on('change:active', function(object, value) {
 			if(value === true) {
@@ -45,7 +49,15 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 	},
 
 	getBuilding: function() {
-		return null;
+		if(this.store.building === null) {
+			building = Backbone.Model.prototype.get.call(this, 'building');
+
+			if(building !== null) {
+				this.store.building = new Universe.Application.Collections.PlanetBuilding(building);
+			}
+		}
+
+		return this.store.building;
 	}
 });
 
@@ -94,7 +106,18 @@ Universe.Application.Views.PlanetContainer = Universe.Application.Views.Containe
 			planet: model
 		}));
 
+		if(model.get('building') !== null) {
+			var buildingContainer = this.$el.find('#planet-building-container');
+					buildingContainer.append(this.renderBuilding(model).render());
+		}
+
 		return this.el;
+	},
+
+	renderBuilding: function(model) {
+		return new Universe.Application.Views.PlanetBuildingCollection({
+			collection: model.get('building')
+		});
 	}
 });
 

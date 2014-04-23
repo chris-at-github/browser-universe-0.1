@@ -30,6 +30,12 @@
 					</li>
 				<% } %>
 			</ul>
+
+			<% if(planet.get('building') !== null) { %>
+				<fieldset id="planet-building-container">
+					<legend>Gebäude</legend>
+				</fieldset>
+			<% } %>
 		</script>
 
 		<script type="text/template" id="tmpl-planet-building-container">

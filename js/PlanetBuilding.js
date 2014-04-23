@@ -21,3 +21,39 @@ Universe.Application.Models.PlanetBuilding = Universe.Application.Models.Buildin
 Universe.Application.Collections.PlanetBuilding = Backbone.Collection.extend({
 	model: Universe.Application.Models.PlanetBuilding
 });
+
+// ---
+
+Universe.Application.Views.PlanetBuildingCollection = Backbone.View.extend({
+	tagName: 'ul',
+	className: 'objects',
+
+	initialize: function() {
+	},
+
+	render: function() {
+		var instance = this;
+
+		_(this.collection.models).each(function(buildingModel) {
+			var buildingView = new Universe.Application.Views.PlanetBuilding({
+				model: buildingModel
+			});
+
+			instance.$el.append(buildingView.render());
+		});
+
+		return this.el;
+	}
+});
+
+// ---
+
+Universe.Application.Views.PlanetBuilding = Backbone.View.extend({
+	template: _.template($('#tmpl-planet-building-container').html()),
+	tagName: 'li',
+
+	render: function() {
+		this.$el.html(this.template({building: this.model}));
+		return this.el;
+	}
+});
