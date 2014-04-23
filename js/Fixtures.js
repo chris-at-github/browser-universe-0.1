@@ -23,7 +23,7 @@ Universe.Application.Fixtures.Planet = [
 			y: 105
 		},
 		active: true,
-		player: 1,
+		player: null,
 		building: [
 			{
 				extend: 1,
