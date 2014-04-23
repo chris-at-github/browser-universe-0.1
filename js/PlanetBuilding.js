@@ -15,3 +15,9 @@ Universe.Application.Models.PlanetBuilding = Universe.Application.Models.Buildin
 		}
 	}
 });
+
+// ---
+
+Universe.Application.Collections.PlanetBuilding = Backbone.Collection.extend({
+	model: Universe.Application.Models.PlanetBuilding
+});

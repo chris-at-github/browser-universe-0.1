@@ -1,53 +1,96 @@
 <!DOCTYPE html>
 <html class="no-js">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Universe</title>
+		<title>Universe</title>
 
-    <link rel="stylesheet" href="/css/screen.css" />
-  </head>
-  <body>
+		<link rel="stylesheet" href="/css/screen.css" />
+	</head>
+	<body>
 
-    <script type="text/template" id="tmpl-building-container">
-    	<ul class="attributes">
-    		<li>
-    			<span class="attributes-title">Name:</span>
-    			<span class="attributes-data"><%= building.get('name') %></span>
-    		</li>
-    	</ul>
-    </script>
+		<script type="text/template" id="tmpl-planet-container">
+			<ul class="attributes">
+				<li>
+					<span class="attributes-title">Name:</dt>
+					<span class="attributes-data"><%= planet.get('name') %></span>
+				</li>
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+				<li>
+					<span class="attributes-title">Typ:</dt>
+					<span class="attributes-data"><%= planet.get('type') %></span>
+				</li>
+
+				<% if(planet.get('player') !== null) { %>
+					<li>
+						<span class="attributes-title">Player:</span>
+						<span class="attributes-data"><%= planet.get('player').get('name') %></span>
+					</li>
+				<% } %>
+			</ul>
+		</script>
+
+		<script type="text/template" id="tmpl-planet-building-container">
+			<ul class="attributes">
+				<li>
+					<span class="attributes-title">Name:</span>
+					<span class="attributes-data"><%= building.get('name') %></span>
+				</li>
+			</ul>
+		</script>
+
+		<script type="text/template" id="tmpl-building-container">
+			<ul class="attributes">
+				<li>
+					<span class="attributes-title">Name:</span>
+					<span class="attributes-data"><%= building.get('name') %></span>
+				</li>
+			</ul>
+		</script>
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript">!window.jQuery && document.write(unescape('%3Cscript type="text/javascript" src="/js/libraries/jquery-2.1.0.min.js"%3E%3C/script%3E'))</script>
 
-    <!-- // <script type="text/javascript" src="/js/libraries/handlebars-1.1.2.js"></script> -->
-    <script type="text/javascript" src="/js/libraries/underscore-1.6.0.js"></script>
-    <script type="text/javascript" src="/js/libraries/backbone-1.1.2.js"></script>
+		<!-- // <script type="text/javascript" src="/js/libraries/handlebars-1.1.2.js"></script> -->
+		<script type="text/javascript" src="/js/libraries/underscore-1.6.0.js"></script>
+		<script type="text/javascript" src="/js/libraries/backbone-1.1.2.js"></script>
 
-    <script type="text/javascript" src="/js/Namespace.js"></script>
-    <script type="text/javascript" src="/js/Fixtures.js"></script>
-    <script type="text/javascript" src="/js/Application.js"></script>
-    <script type="text/javascript" src="/js/Building.js"></script>
-    <script type="text/javascript" src="/js/PlanetBuilding.js"></script>
+		<script type="text/javascript" src="/js/Namespace.js"></script>
+		<script type="text/javascript" src="/js/Fixtures.js"></script>
+		<script type="text/javascript" src="/js/Application.js"></script>
+		<script type="text/javascript" src="/js/Player.js"></script>
+		<script type="text/javascript" src="/js/Planet.js"></script>
+		<script type="text/javascript" src="/js/Building.js"></script>
+		<script type="text/javascript" src="/js/PlanetBuilding.js"></script>
 
-    <script type="text/javascript">
-    	$(function() {
-    		var Page = $('body');
-    		var Collection = new Universe.Application.Collections.Building(Universe.Application.Fixtures.Building);
+		<script type="text/javascript">
+			$(function() {
+				var Page 	= $('body'),
+						Model = new Universe.Application.Models.Planet(Universe.Application.Fixtures.Planet[2]);
 
-    		var Model = new Universe.Application.Models.PlanetBuilding(Universe.Application.Fixtures.Planet[2].building[0]);
+				var	View 	= new Universe.Application.Views.PlanetContainer({
+					model: Model
+				});
 
-    		console.log(Model);
+				Page.append(View.render());
 
-    		// var View	= new Universe.Application.Views.Building({
-    		// 	model: new Universe.Application.Models.Building(Universe.Application.Fixtures.Building[0])
-    		// });
 
-    		// Page.append(View.render());
-    	});
-    </script>
-  </body>
+
+
+				// var Collection = new Universe.Application.Collections.Building(Universe.Application.Fixtures.Building);
+
+				// var Model = new Universe.Application.Models.PlanetBuilding(Universe.Application.Fixtures.Planet[2].building[0]);
+
+				// console.log(Model);
+
+				// var View	= new Universe.Application.Views.Building({
+				// 	model: new Universe.Application.Models.Building(Universe.Application.Fixtures.Building[0])
+				// });
+
+				// Page.append(View.render());
+			});
+		</script>
+	</body>
 </html>

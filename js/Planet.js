@@ -42,6 +42,10 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 		}
 
 		return player;
+	},
+
+	getBuilding: function() {
+		return null;
 	}
 });
 
@@ -86,7 +90,10 @@ Universe.Application.Views.PlanetContainer = Universe.Application.Views.Containe
 			model = this.model;
 		}
 
-		this.$el.html(this.template({planet: model}));
+		this.$el.html(this.template({
+			planet: model
+		}));
+
 		return this.el;
 	}
 });
