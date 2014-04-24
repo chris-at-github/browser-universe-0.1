@@ -110,12 +110,13 @@ dt {
 }
 
 fieldset {
-	padding: 5px 10px;
-	border: 1px solid $grey-lighter;
+	padding: 10px 0;
+	border: 0;
+	border-top: 1px solid $grey-lighter;
 }
 
 legend {
-	padding: 0 5px;
+	padding: 0 10px 0 0;
 	line-height: 1;
 }
 
@@ -221,6 +222,36 @@ nav a:hover, nav a:focus, nav a:active {
 
 .container > *:last-child {
 	margin: 0;
+}
+
+// Objects
+// -------------------------------------------------------------------------------------
+.objects {
+	& > li {
+		& {
+			padding: 10px 0;
+			border-top: 1px solid $grey-lighter;
+		}
+
+		&:first-child {
+			padding: 0 0 10px 0;
+			border: 0;
+		}
+
+		&:last-child {
+			padding: 10px 0 0 0;
+		}
+	}
+
+	.attributes {
+		margin: 0;
+	}
+}
+
+// Attributes
+// -------------------------------------------------------------------------------------
+.attributes {
+	margin: 0 0 10px 0;
 }
 
 // Planeten

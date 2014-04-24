@@ -92,11 +92,12 @@ dt {
   margin: 0 5px 0 0; }
 
 fieldset {
-  padding: 5px 10px;
-  border: 1px solid #e2e2e4; }
+  padding: 10px 0;
+  border: 0;
+  border-top: 1px solid #e2e2e4; }
 
 legend {
-  padding: 0 5px;
+  padding: 0 10px 0 0;
   line-height: 1; }
 
 address {
@@ -179,6 +180,20 @@ nav a:hover, nav a:focus, nav a:active {
 
 .container > *:last-child {
   margin: 0; }
+
+.objects > li {
+  padding: 10px 0;
+  border-top: 1px solid #e2e2e4; }
+.objects > li:first-child {
+  padding: 0 0 10px 0;
+  border: 0; }
+.objects > li:last-child {
+  padding: 10px 0 0 0; }
+.objects .attributes {
+  margin: 0; }
+
+.attributes {
+  margin: 0 0 10px 0; }
 
 #planet-layer {
   position: absolute;

@@ -28,6 +28,10 @@ Universe.Application.Fixtures.Planet = [
 			{
 				extend: 1,
 				level: 2
+			},
+			{
+				extend: 1,
+				level: 1
 			}
 		]
 	}
