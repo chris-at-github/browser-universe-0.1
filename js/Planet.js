@@ -107,8 +107,7 @@ Universe.Application.Views.PlanetContainer = Universe.Application.Views.Containe
 		}));
 
 		if(model.get('building') !== null) {
-			var buildingContainer = this.$el.find('#planet-building-container');
-					buildingContainer.append(this.renderBuilding(model).render());
+			this.$el.append(this.renderBuilding(model).render());
 		}
 
 		return this.el;

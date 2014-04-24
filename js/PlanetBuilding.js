@@ -25,22 +25,30 @@ Universe.Application.Collections.PlanetBuilding = Backbone.Collection.extend({
 // ---
 
 Universe.Application.Views.PlanetBuildingCollection = Backbone.View.extend({
-	tagName: 'ul',
-	className: 'objects',
+	template: _.template($('#tmpl-planet-building-collection-container').html()),
 
 	initialize: function() {
 	},
 
 	render: function() {
-		var instance = this;
+		var instance 	= this;
+		var objects		= $('<ul class="objects"></ul>');
 
+		// Template rendern
+		this.$el.html(this.template());
+
+		// Einzelgebaeude der Liste hinzufuegen
 		_(this.collection.models).each(function(buildingModel) {
 			var buildingView = new Universe.Application.Views.PlanetBuilding({
 				model: buildingModel
 			});
 
-			instance.$el.append(buildingView.render());
+			objects.append(buildingView.render());
 		});
+
+		// Liste dem Root-Element hinzufuegen
+		var buildingContainer = this.$el.find('#planet-building-container');
+				buildingContainer.append(objects);
 
 		return this.el;
 	}
