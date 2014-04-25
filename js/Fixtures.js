@@ -27,10 +27,6 @@ Universe.Application.Fixtures.Planet = [
 		building: [
 			{
 				extend: 1,
-				level: 2
-			},
-			{
-				extend: 1,
 				level: 1
 			}
 		]
@@ -57,4 +53,8 @@ Universe.Application.Fixtures.Building = [
 		id: 1,
 		name: 'Bodenstation'
 	},
+	{
+		id: 2,
+		name: 'Lager'
+	}
 ];

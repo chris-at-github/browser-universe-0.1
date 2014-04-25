@@ -3,6 +3,21 @@ String.prototype.ucfirst = function() {
 }
 
 // ---
+Universe.Factory = {
+	modal: null,
+
+	getModal: function() {
+		if(this.modal === null) {
+			if(Universe.Application.Views.Modal !== undefined) {
+				this.modal = new Universe.Application.Views.Modal();
+			}
+		}
+
+		return this.modal;
+	}
+};
+
+// ---
 
 Universe.Application.Views.Sidebar = Backbone.View.extend({
 	tagName: 'div',
@@ -59,12 +74,24 @@ Universe.Application.Views.Container = Backbone.View.extend({
 Universe.Application.Views.Modal = Backbone.View.extend({
 	tagName: 'div',
 	id: 'modal',
+	className: 'closed',
 
 	initialize: function() {
+		$('body').append(this.render());
+	},
+
+	open: function(parameter) {
+		if(parameter.body !== undefined) {
+			this.setBody(parameter.body);
+		}
+
+		this.$el.removeClass('closed');
 	},
 
 	close: function() {
-		this.$el.html(null);
+		this.$el
+		.html(null)
+		.addClass('closed');
 	},
 
 	setBody: function(body) {
@@ -79,9 +106,6 @@ Universe.Application.Views.Modal = Backbone.View.extend({
 // ---
 
 $(function() {
-
-	// Layout
-	// Universe.Modal = new Universe.Application.Views.Modal();
 
 	// Sidebar
 	Universe.Registry.Sidebar = new Universe.Application.Views.Sidebar();
