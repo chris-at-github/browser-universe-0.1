@@ -54,13 +54,31 @@ Universe.Views.PlanetBuildingCollection = Backbone.View.extend({
 		var buildingContainer = this.$el.find('#planet-building-container');
 				buildingContainer.append(objects);
 
+		this.openAddModal();
+
 		return this.el;
 	},
 
 	openAddModal: function() {
+		var objects		= $('<ul class="objects"></ul>');
+		var buildings	= Universe.Factory.getBuilding();
+
+		_(buildings.models).each(function(buildingModel) {
+			var buildingView = new Universe.Views.PlanetBuilding({
+				model: 		buildingModel,
+				actions: 	{
+					'add': {
+						'label': 'Hinzufügen'
+					}
+				}
+			});
+
+			objects.append(buildingView.render());
+		});
+
 		var modal = Universe.Factory.getModal();
 				modal.open({
-					'body': 'jfkjdfklj dsjf jdf sjfkjsd fjasf dsjflkjas fdjsklf ads'
+					'body': objects
 				});
 	}
 });
@@ -70,11 +88,19 @@ Universe.Views.PlanetBuildingCollection = Backbone.View.extend({
 Universe.Views.PlanetBuilding = Backbone.View.extend({
 	template: _.template($('#tmpl-planet-building-container').html()),
 	tagName: 'li',
+	actions: null,
 
-
+	initialize: function() {
+		console.log(this);
+	},
 
 	render: function() {
-		this.$el.html(this.template({building: this.model}));
+		console.log(this.actions);
+
+		this.$el.html(this.template({
+			building: this.model,
+			actions: 	this.actions
+		}));
 		return this.el;
 	}
 });
