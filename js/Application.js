@@ -5,6 +5,7 @@ String.prototype.ucfirst = function() {
 // ---
 Universe.Factory = {
 	modal: null,
+	building: null,
 
 	getModal: function() {
 		if(this.modal === null) {
@@ -14,6 +15,16 @@ Universe.Factory = {
 		}
 
 		return this.modal;
+	},
+
+	getBuilding: function() {
+		if(this.building === null) {
+			if(Universe.Collections.Building !== undefined) {
+				this.building = new Universe.Collections.Building(Universe.Fixtures.Building);
+			}
+		}
+
+		return this.building;
 	}
 };
 
@@ -115,10 +126,6 @@ Universe.Views.Modal = Backbone.View.extend({
 // ---
 
 $(function() {
-
-	Universe.Factory.getModal().open({
-		body: 'fdjafjdslk fjasf'
-	});
 
 	// Sidebar
 	Universe.Registry.Sidebar = new Universe.Views.Sidebar();
