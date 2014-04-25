@@ -1,4 +1,4 @@
-Universe.Application.Fixtures.Planet = [
+Universe.Fixtures.Planet = [
 	{
 		name: 'Tilion',
 		type: 'terrestrial',
@@ -35,7 +35,7 @@ Universe.Application.Fixtures.Planet = [
 
 // ---
 
-Universe.Application.Fixtures.Player = [
+Universe.Fixtures.Player = [
 	{
 		id: 1,
 		name: 'Player A'
@@ -48,7 +48,7 @@ Universe.Application.Fixtures.Player = [
 
 // ---
 
-Universe.Application.Fixtures.Building = [
+Universe.Fixtures.Building = [
 	{
 		id: 1,
 		name: 'Bodenstation'

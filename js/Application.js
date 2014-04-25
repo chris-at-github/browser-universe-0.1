@@ -8,8 +8,8 @@ Universe.Factory = {
 
 	getModal: function() {
 		if(this.modal === null) {
-			if(Universe.Application.Views.Modal !== undefined) {
-				this.modal = new Universe.Application.Views.Modal();
+			if(Universe.Views.Modal !== undefined) {
+				this.modal = new Universe.Views.Modal();
 			}
 		}
 
@@ -19,7 +19,7 @@ Universe.Factory = {
 
 // ---
 
-Universe.Application.Views.Sidebar = Backbone.View.extend({
+Universe.Views.Sidebar = Backbone.View.extend({
 	tagName: 'div',
 	id: 'sidebar',
 	container: [],
@@ -49,7 +49,7 @@ Universe.Application.Views.Sidebar = Backbone.View.extend({
 
 // ---
 
-Universe.Application.Views.Container = Backbone.View.extend({
+Universe.Views.Container = Backbone.View.extend({
 	tagName: 'div',
 	className: 'container',
 
@@ -71,7 +71,7 @@ Universe.Application.Views.Container = Backbone.View.extend({
 
 // ---
 
-Universe.Application.Views.Modal = Backbone.View.extend({
+Universe.Views.Modal = Backbone.View.extend({
 	tagName: 'div',
 	id: 'modal',
 	className: 'closed',
@@ -108,32 +108,32 @@ Universe.Application.Views.Modal = Backbone.View.extend({
 $(function() {
 
 	// Sidebar
-	Universe.Registry.Sidebar = new Universe.Application.Views.Sidebar();
+	Universe.Registry.Sidebar = new Universe.Views.Sidebar();
 
 	var Page = $('body');
 			// Page.append(Universe.Modal.render());
 			Page.append(Universe.Registry.Sidebar.render());
 
 	// // Player registieren
-	// if(Universe.Application.Collections.Player !== undefined) {
-	// 	Universe.Registry.PlayerCollection = new Universe.Application.Collections.Player();
-	// 	Universe.Registry.PlayerCollection.add(Universe.Application.Fixtures.Player);
+	// if(Universe.Collections.Player !== undefined) {
+	// 	Universe.Registry.PlayerCollection = new Universe.Collections.Player();
+	// 	Universe.Registry.PlayerCollection.add(Universe.Fixtures.Player);
 	// }
 
 	// // Planeten
-	// if(Universe.Application.Collections.Planet !== undefined) {
-	// 	var planetCollection = new Universe.Application.Collections.Planet();
-	// 			planetCollection.add(Universe.Application.Fixtures.Planet);
+	// if(Universe.Collections.Planet !== undefined) {
+	// 	var planetCollection = new Universe.Collections.Planet();
+	// 			planetCollection.add(Universe.Fixtures.Planet);
 
-	// 	var planetCollectionView = new Universe.Application.Views.PlanetCollection({
+	// 	var planetCollectionView = new Universe.Views.PlanetCollection({
 	// 		collection: planetCollection
 	// 	});
 	// 	Page.append(planetCollectionView.render());
 	// }
 
 	// // Player ausgeben
-	// if(Universe.Application.Collections.Player !== undefined) {
-	// 	var playerCollectionView = new Universe.Application.Views.PlayerCollection({
+	// if(Universe.Collections.Player !== undefined) {
+	// 	var playerCollectionView = new Universe.Views.PlayerCollection({
 	// 		collection: Universe.Registry.PlayerCollection
 	// 	});
 	// 	Universe.Registry.Sidebar.add(playerCollectionView);

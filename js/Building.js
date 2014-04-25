@@ -1,4 +1,4 @@
-Universe.Application.Models.Building = Backbone.Model.extend({
+Universe.Models.Building = Backbone.Model.extend({
 	defaults: {
 		name: null
 	}
@@ -6,13 +6,13 @@ Universe.Application.Models.Building = Backbone.Model.extend({
 
 // ---
 
-Universe.Application.Collections.Building = Backbone.Collection.extend({
-	model: Universe.Application.Models.Building
+Universe.Collections.Building = Backbone.Collection.extend({
+	model: Universe.Models.Building
 });
 
 // ---
 
-Universe.Application.Views.Building = Backbone.View.extend({
+Universe.Views.Building = Backbone.View.extend({
 	template: _.template($('#tmpl-building-container').html()),
 	className: 'building',
 

@@ -1,4 +1,4 @@
-Universe.Application.Models.Player = Backbone.Model.extend({
+Universe.Models.Player = Backbone.Model.extend({
 	defaults: {
 		id: 0,
 		name: null
@@ -10,8 +10,8 @@ Universe.Application.Models.Player = Backbone.Model.extend({
 
 // ---
 
-Universe.Application.Collections.Player = Backbone.Collection.extend({
-  model: Universe.Application.Models.Player,
+Universe.Collections.Player = Backbone.Collection.extend({
+  model: Universe.Models.Player,
   active: null,
 
 	initialize: function() {
@@ -24,14 +24,14 @@ Universe.Application.Collections.Player = Backbone.Collection.extend({
 
 // ---
 
-Universe.Application.Views.PlayerCollection = Universe.Application.Views.Container.extend({
+Universe.Views.PlayerCollection = Universe.Views.Container.extend({
 	id: 'player-container',
 
 	render: function() {
 		var instance = this;
 
 		_(this.collection.models).each(function(playerModel) {
-			var playerView = new Universe.Application.Views.Player({
+			var playerView = new Universe.Views.Player({
 				model: playerModel
 			});
 
@@ -44,7 +44,7 @@ Universe.Application.Views.PlayerCollection = Universe.Application.Views.Contain
 
 // ---
 
-Universe.Application.Views.Player = Backbone.View.extend({
+Universe.Views.Player = Backbone.View.extend({
 	className: 'player',
 
 	render: function() {

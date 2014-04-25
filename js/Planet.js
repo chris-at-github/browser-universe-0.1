@@ -1,4 +1,4 @@
-Universe.Application.Models.Planet = Backbone.Model.extend({
+Universe.Models.Planet = Backbone.Model.extend({
 	defaults: {
 		name: null,
 		type: null,
@@ -53,7 +53,7 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 			building = Backbone.Model.prototype.get.call(this, 'building');
 
 			if(building !== null) {
-				this.store.building = new Universe.Application.Collections.PlanetBuilding(building);
+				this.store.building = new Universe.Collections.PlanetBuilding(building);
 			}
 		}
 
@@ -63,8 +63,8 @@ Universe.Application.Models.Planet = Backbone.Model.extend({
 
 // ---
 
-Universe.Application.Collections.Planet = Backbone.Collection.extend({
-	model: Universe.Application.Models.Planet,
+Universe.Collections.Planet = Backbone.Collection.extend({
+	model: Universe.Models.Planet,
 	active: null,
 
 	initialize: function() {
@@ -94,7 +94,7 @@ Universe.Application.Collections.Planet = Backbone.Collection.extend({
 
 // ---
 
-Universe.Application.Views.PlanetContainer = Universe.Application.Views.Container.extend({
+Universe.Views.PlanetContainer = Universe.Views.Container.extend({
 	template: _.template($('#tmpl-planet-container').html()),
 
 	render: function(model) {
@@ -114,7 +114,7 @@ Universe.Application.Views.PlanetContainer = Universe.Application.Views.Containe
 	},
 
 	renderBuilding: function(model) {
-		return new Universe.Application.Views.PlanetBuildingCollection({
+		return new Universe.Views.PlanetBuildingCollection({
 			collection: model.get('building')
 		});
 	}
@@ -122,7 +122,7 @@ Universe.Application.Views.PlanetContainer = Universe.Application.Views.Containe
 
 // ---
 
-Universe.Application.Views.Planet = Backbone.View.extend({
+Universe.Views.Planet = Backbone.View.extend({
 	tagName: 'div',
 	className: 'planet',
 
@@ -135,7 +135,7 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 
 		// Modal fuer die Ausgabe registrieren
 		if(Universe.Registry.PlanetContainer === undefined) {
-			Universe.Registry.PlanetContainer = new Universe.Application.Views.PlanetContainer({
+			Universe.Registry.PlanetContainer = new Universe.Views.PlanetContainer({
 				model: this.model
 			});
 			Universe.Registry.Sidebar.add(Universe.Registry.PlanetContainer);
@@ -222,7 +222,7 @@ Universe.Application.Views.Planet = Backbone.View.extend({
 
 // ---
 
-Universe.Application.Views.PlanetCollection = Backbone.View.extend({
+Universe.Views.PlanetCollection = Backbone.View.extend({
 	tagName: 'div',
 	id: 'planet-layer',
 
@@ -237,7 +237,7 @@ Universe.Application.Views.PlanetCollection = Backbone.View.extend({
 		var self = this;
 
 		_(this.collection.models).each(function(planetModel) {
-			var planetView = new Universe.Application.Views.Planet({
+			var planetView = new Universe.Views.Planet({
 				model: planetModel
 			});
 

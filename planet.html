@@ -80,9 +80,9 @@
 		<script type="text/javascript">
 			$(function() {
 				var Page 	= $('body'),
-						Model = new Universe.Application.Models.Planet(Universe.Application.Fixtures.Planet[2]);
+						Model = new Universe.Models.Planet(Universe.Fixtures.Planet[2]);
 
-				var	View 	= new Universe.Application.Views.PlanetContainer({
+				var	View 	= new Universe.Views.PlanetContainer({
 					model: Model
 				});
 
@@ -91,14 +91,14 @@
 
 
 
-				// var Collection = new Universe.Application.Collections.Building(Universe.Application.Fixtures.Building);
+				// var Collection = new Universe.Collections.Building(Universe.Fixtures.Building);
 
-				// var Model = new Universe.Application.Models.PlanetBuilding(Universe.Application.Fixtures.Planet[2].building[0]);
+				// var Model = new Universe.Models.PlanetBuilding(Universe.Fixtures.Planet[2].building[0]);
 
 				// console.log(Model);
 
-				// var View	= new Universe.Application.Views.Building({
-				// 	model: new Universe.Application.Models.Building(Universe.Application.Fixtures.Building[0])
+				// var View	= new Universe.Views.Building({
+				// 	model: new Universe.Models.Building(Universe.Fixtures.Building[0])
 				// });
 
 				// Page.append(View.render());

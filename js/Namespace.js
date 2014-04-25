@@ -2,8 +2,8 @@
 // Universe Namespace
 var Universe = {};
 
-// Application Namespace
-Universe.Application = {
+// Universe Namespace
+Universe = {
 	Models : {},
 	Collections : {},
 	Views : {},

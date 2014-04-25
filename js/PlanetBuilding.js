@@ -1,4 +1,4 @@
-Universe.Application.Models.PlanetBuilding = Universe.Application.Models.Building.extend({
+Universe.Models.PlanetBuilding = Universe.Models.Building.extend({
 	initialize: function() {
 		if(this.get('extend') !== null) {
 			this.extendBuilding();
@@ -8,7 +8,7 @@ Universe.Application.Models.PlanetBuilding = Universe.Application.Models.Buildin
 	extendBuilding: function() {
 		if(this.get('extend') !== null) {
 			if(Universe.Registry.Building === undefined) {
-				Universe.Registry.Building = new Universe.Application.Collections.Building(Universe.Application.Fixtures.Building);
+				Universe.Registry.Building = new Universe.Collections.Building(Universe.Fixtures.Building);
 			}
 
 			this.set(Universe.Registry.Building.get(this.get('extend')).attributes);
@@ -18,13 +18,13 @@ Universe.Application.Models.PlanetBuilding = Universe.Application.Models.Buildin
 
 // ---
 
-Universe.Application.Collections.PlanetBuilding = Backbone.Collection.extend({
-	model: Universe.Application.Models.PlanetBuilding
+Universe.Collections.PlanetBuilding = Backbone.Collection.extend({
+	model: Universe.Models.PlanetBuilding
 });
 
 // ---
 
-Universe.Application.Views.PlanetBuildingCollection = Backbone.View.extend({
+Universe.Views.PlanetBuildingCollection = Backbone.View.extend({
 	template: _.template($('#tmpl-planet-building-collection-container').html()),
 
 	initialize: function() {
@@ -39,7 +39,7 @@ Universe.Application.Views.PlanetBuildingCollection = Backbone.View.extend({
 
 		// Einzelgebaeude der Liste hinzufuegen
 		_(this.collection.models).each(function(buildingModel) {
-			var buildingView = new Universe.Application.Views.PlanetBuilding({
+			var buildingView = new Universe.Views.PlanetBuilding({
 				model: buildingModel
 			});
 
@@ -56,7 +56,7 @@ Universe.Application.Views.PlanetBuildingCollection = Backbone.View.extend({
 
 // ---
 
-Universe.Application.Views.PlanetBuilding = Backbone.View.extend({
+Universe.Views.PlanetBuilding = Backbone.View.extend({
 	template: _.template($('#tmpl-planet-building-container').html()),
 	tagName: 'li',
 
