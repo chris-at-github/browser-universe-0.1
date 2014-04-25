@@ -329,7 +329,24 @@ button, .button {
 
 // Modal
 // -------------------------------------------------------------------------------------
-#modal {
+#modal, #modal-overlay {
+	position: absolute;
+	top: 0; left: 0;
+	bottom: 0; right: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#modal-overlay {
+	background: $grey-light;
+	opacity: 0.5;
+}
+
+#modal.closed {
+	display: none;
+}
+
+#modal-window {
 	position: absolute;
 	top: 20px; right: 20px;
 	width: 500px;
@@ -337,8 +354,4 @@ button, .button {
 	padding: 10px;
 	border: 3px solid $grey-lighter;
 	background: #fff;
-}
-
-#modal.closed {
-	display: none;
 }

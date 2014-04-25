@@ -75,6 +75,11 @@ Universe.Views.Modal = Backbone.View.extend({
 	tagName: 'div',
 	id: 'modal',
 	className: 'closed',
+	overlay: true,
+
+	events: {
+		'click #modal-overlay': 'close'
+	},
 
 	initialize: function() {
 		$('body').append(this.render());
@@ -89,16 +94,20 @@ Universe.Views.Modal = Backbone.View.extend({
 	},
 
 	close: function() {
-		this.$el
-		.html(null)
-		.addClass('closed');
+		this.$el.addClass('closed');
 	},
 
 	setBody: function(body) {
-		this.$el.html(body);
+		this.$el.find('#modal-window').html(body);
 	},
 
 	render: function() {
+		if(this.overlay === true) {
+			this.$el.append('<div id="modal-overlay"></div>');
+		}
+
+		this.$el.append('<div id="modal-window"></div>');
+
 		return this.el;
 	}
 });
@@ -106,6 +115,10 @@ Universe.Views.Modal = Backbone.View.extend({
 // ---
 
 $(function() {
+
+	Universe.Factory.getModal().open({
+		body: 'fdjafjdslk fjasf'
+	});
 
 	// Sidebar
 	Universe.Registry.Sidebar = new Universe.Views.Sidebar();
