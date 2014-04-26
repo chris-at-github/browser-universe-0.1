@@ -65,13 +65,11 @@ Universe.Views.PlanetBuildingCollection = Backbone.View.extend({
 
 		_(buildings.models).each(function(buildingModel) {
 			var buildingView = new Universe.Views.PlanetBuilding({
-				model: 		buildingModel,
-				actions: 	{
-					'add': {
-						'label': 'Hinzufügen'
-					}
-				}
-			});
+					model: 		buildingModel,
+				})
+				.setActions({
+					'add': {'label': 'Hinzufügen'}
+				});
 
 			objects.append(buildingView.render());
 		});
@@ -90,17 +88,36 @@ Universe.Views.PlanetBuilding = Backbone.View.extend({
 	tagName: 'li',
 	actions: null,
 
+	events: {
+		'click .button-action-add': 'onAdd'
+	},
+
 	initialize: function() {
-		console.log(this);
 	},
 
 	render: function() {
-		console.log(this.actions);
-
 		this.$el.html(this.template({
 			building: this.model,
 			actions: 	this.actions
 		}));
+
+		if(this.actions !== null) {
+			var actionsContainer = this.$el.find('.form-actions');
+
+			_.each(this.actions, function(data, action) {
+				actionsContainer.append('<button class="button button-action-' + action + '">' + data.label + '</button>');
+			});
+		}
+
 		return this.el;
+	},
+
+	setActions: function(actions) {
+		this.actions = actions;
+		return this;
+	},
+
+	onAdd: function() {
+		console.log('add');
 	}
 });

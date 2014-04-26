@@ -38,7 +38,7 @@
 
 				 <div id="planet-building-container"></div>
 
-				<div class="actions">
+				<div class="form-actions">
 					<button id="button-add-planet-building" class="button">Gebäude hinzufügen</button>
 				</div>
 			</fieldset>
@@ -51,6 +51,10 @@
 					<span class="attributes-data"><%= building.get('name') %></span>
 				</li>
 			</ul>
+
+			<% if(actions !== null) { %>
+				<div class="form-actions"></div>
+			<% } %>
 		</script>
 
 		<script type="text/template" id="tmpl-building-container">
