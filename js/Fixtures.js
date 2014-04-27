@@ -26,9 +26,14 @@ Universe.Fixtures.Planet = [
 		player: null,
 		building: [
 			{
-				extend: 1,
-				level: 1
-			}
+				extend: 1
+			},
+			// {
+			// 	extend: 2
+			// },
+			// {
+			// 	extend: 2
+			// }
 		]
 	}
 ];

@@ -7,11 +7,23 @@ Universe.Models.PlanetBuilding = Universe.Models.Building.extend({
 
 	extendBuilding: function() {
 		if(this.get('extend') !== null) {
+			var extend = null;
+
 			if(Universe.Registry.Building === undefined) {
 				Universe.Registry.Building = new Universe.Collections.Building(Universe.Fixtures.Building);
 			}
 
-			this.set(Universe.Registry.Building.get(this.get('extend')).attributes);
+			if(_.isNumber(this.get('extend')) === true) {
+				extend = Universe.Registry.Building.get(this.get('extend'));
+			}
+
+			if(this.get('extend') instanceof Universe.Models.Building) {
+				extend = this.get('extend');
+			}
+
+			if(extend instanceof Universe.Models.Building) {
+				this.set(_.omit(extend.attributes, 'id'));
+			}
 		}
 	}
 });
@@ -26,12 +38,18 @@ Universe.Collections.PlanetBuilding = Backbone.Collection.extend({
 
 Universe.Views.PlanetBuildingCollection = Backbone.View.extend({
 	template: _.template($('#tmpl-planet-building-collection-container').html()),
+	planet: null,
 
 	events: {
 		'click #button-add-planet-building': 'openAddModal'
 	},
 
 	initialize: function() {
+		var instance = this;
+
+		this.collection.on('add', function() {
+			instance.onAdd();
+		});
 	},
 
 	render: function() {
@@ -54,22 +72,28 @@ Universe.Views.PlanetBuildingCollection = Backbone.View.extend({
 		var buildingContainer = this.$el.find('#planet-building-container');
 				buildingContainer.append(objects);
 
-		this.openAddModal();
+		// this.openAddModal();
 
 		return this.el;
 	},
 
 	openAddModal: function() {
+		var instance	= this;
 		var objects		= $('<ul class="objects"></ul>');
 		var buildings	= Universe.Factory.getBuilding();
 
-		_(buildings.models).each(function(buildingModel) {
+		_(buildings.models).each(function(buildingModelz) {
+			var buildingModel = new Universe.Models.PlanetBuilding({
+				extend: 2
+			});
+
 			var buildingView = new Universe.Views.PlanetBuilding({
 					model: 		buildingModel,
 				})
 				.setActions({
 					'add': {'label': 'Hinzufügen'}
-				});
+				})
+				.setPlanet(instance.planet);
 
 			objects.append(buildingView.render());
 		});
@@ -78,6 +102,16 @@ Universe.Views.PlanetBuildingCollection = Backbone.View.extend({
 				modal.open({
 					'body': objects
 				});
+	},
+
+	setPlanet: function(planet) {
+		this.planet = planet;
+		return this;
+	},
+
+	onAdd: function(argument) {
+		this.render();
+		Universe.Factory.getModal().close();
 	}
 });
 
@@ -87,12 +121,14 @@ Universe.Views.PlanetBuilding = Backbone.View.extend({
 	template: _.template($('#tmpl-planet-building-container').html()),
 	tagName: 'li',
 	actions: null,
+	planet: null,
 
 	events: {
 		'click .button-action-add': 'onAdd'
 	},
 
 	initialize: function() {
+		// console.log(this.model);
 	},
 
 	render: function() {
@@ -117,7 +153,14 @@ Universe.Views.PlanetBuilding = Backbone.View.extend({
 		return this;
 	},
 
+	setPlanet: function(planet) {
+		this.planet = planet;
+		return this;
+	},
+
 	onAdd: function() {
-		console.log('add');
+		if(this.planet !== null) {
+			this.planet.setBuilding(this.model);
+		}
 	}
 });

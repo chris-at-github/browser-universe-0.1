@@ -53,11 +53,25 @@ Universe.Models.Planet = Backbone.Model.extend({
 			building = Backbone.Model.prototype.get.call(this, 'building');
 
 			if(building !== null) {
-				this.store.building = new Universe.Collections.PlanetBuilding(building);
+				this.store.building = new Universe.Collections.PlanetBuilding();
+				this.store.building.add(building);
 			}
 		}
 
 		return this.store.building;
+	},
+
+	setBuilding: function(building) {
+		if(this.store.building === null) {
+			this.store.building = this.getBuilding();
+		}
+
+		if((building instanceof Universe.Models.PlanetBuilding) === false) {
+			throw new Error('building must be a instance of Universe.Models.PlanetBuilding');
+		}
+
+		this.store.building.push(building, {merge: true});
+		// console.log(this.store.building);
 	}
 });
 
@@ -114,9 +128,12 @@ Universe.Views.PlanetContainer = Universe.Views.Container.extend({
 	},
 
 	renderBuilding: function(model) {
-		return new Universe.Views.PlanetBuildingCollection({
-			collection: model.get('building')
-		});
+		var PlanetBuildingView = new Universe.Views.PlanetBuildingCollection({
+				collection: model.get('building')
+			})
+			.setPlanet(model);
+
+		return PlanetBuildingView;
 	}
 });
 
