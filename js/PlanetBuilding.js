@@ -82,9 +82,9 @@ Universe.Views.PlanetBuildingCollection = Backbone.View.extend({
 		var objects		= $('<ul class="objects"></ul>');
 		var buildings	= Universe.Factory.getBuilding();
 
-		_(buildings.models).each(function(buildingModelz) {
+		_(buildings.models).each(function(buildingModel) {
 			var buildingModel = new Universe.Models.PlanetBuilding({
-				extend: 2
+				extend: buildingModel
 			});
 
 			var buildingView = new Universe.Views.PlanetBuilding({
