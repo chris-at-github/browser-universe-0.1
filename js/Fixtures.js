@@ -27,13 +27,7 @@ Universe.Fixtures.Planet = [
 		building: [
 			{
 				extend: 1
-			},
-			// {
-			// 	extend: 2
-			// },
-			// {
-			// 	extend: 2
-			// }
+			}
 		]
 	}
 ];
@@ -61,5 +55,14 @@ Universe.Fixtures.Building = [
 	{
 		id: 2,
 		name: 'Lager'
+	}
+];
+
+// ---
+
+Universe.Fixtures.Resource = [
+	{
+		id: 1,
+		name: 'Erz'
 	}
 ];

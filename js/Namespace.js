@@ -7,11 +7,10 @@ Universe = {
 	Models : {},
 	Collections : {},
 	Views : {},
-	Fixtures: {}
+	Fixtures: {},
+	Worker: {},
+	Registry: {}
 };
-
-// Registry
-Universe.Registry = {};
 
 // -------------------------------------------------------------------------------------------------
 // Backbone.emulate

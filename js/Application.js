@@ -6,6 +6,7 @@ String.prototype.ucfirst = function() {
 Universe.Factory = {
 	modal: null,
 	building: null,
+	resource: null,
 
 	getModal: function() {
 		if(this.modal === null) {
@@ -25,6 +26,16 @@ Universe.Factory = {
 		}
 
 		return this.building;
+	},
+
+	getResource: function() {
+		if(this.resource === null) {
+			if(Universe.Collections.Resource !== undefined) {
+				this.resource = new Universe.Collections.Resource(Universe.Fixtures.Resource);
+			}
+		}
+
+		return this.resource;
 	}
 };
 
