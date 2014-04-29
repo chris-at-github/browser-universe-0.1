@@ -26,19 +26,26 @@
 
 		<script type="text/javascript">
 			$(function() {
-				var Page 	= $('body');
-				var Ore		= Universe.Factory.getResource().get(1);
+				var Page 		= $('body');
+				var Ore			= Universe.Factory.getResource().get(1);
+				var Quartz	= Universe.Factory.getResource().get(2);
 
 				var StorageOre = new Universe.Models.StorageResource({
 					extend: Ore
 				});
+				var QuartzQuartz = new Universe.Models.StorageResource({
+					extend: Quartz
+				});
 
 				var Worker 			= new Universe.ResourceWorker();
-				var WorkerItem	= new Universe.ResourceWorkerItem();
+				var WorkerItem	= new Universe.ResourceWorkerItem({
+					value: 1,
+					rate: -2
+				});
 
-				Worker.add(WorkerItem);
-
-				console.log(WorkerItem);
+				Worker
+					.add(WorkerItem)
+					.start();
 			});
 		</script>
 	</body>

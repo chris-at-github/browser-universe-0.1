@@ -64,5 +64,9 @@ Universe.Fixtures.Resource = [
 	{
 		id: 1,
 		name: 'Erz'
+	},
+	{
+		id: 2,
+		name: 'Quarz'
 	}
 ];
