@@ -63,10 +63,14 @@ Universe.Fixtures.Building = [
 Universe.Fixtures.Resource = [
 	{
 		id: 1,
-		name: 'Erz'
+		name: 'Erzvorkommen'
 	},
 	{
 		id: 2,
-		name: 'Quarz'
+		name: 'Roh-Erz'
+	},
+	{
+		id: 3,
+		name: 'Stahl'
 	}
 ];

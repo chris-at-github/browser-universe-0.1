@@ -41,3 +41,56 @@ Universe.Models.StorageResource = Universe.Models.Resource.extend({
 		}
 	}
 });
+
+// ---
+
+Universe.Collections.StorageResource = Universe.Collections.Resource.extend({
+	model: Universe.Models.StorageResource
+});
+
+// ---
+
+Universe.Views.StorageResourceCollection = Backbone.View.extend({
+	className: 'container',
+	render: function() {
+		var instance = this;
+
+		if(this.collection !== undefined) {
+			_(this.collection.models).each(function(model) {
+				var view = new Universe.Views.StorageResource({
+					model: model
+				});
+
+				instance.$el.append(view.render());
+			});
+		}
+
+		return this.el;
+	}
+});
+
+// ---
+
+Universe.Views.StorageResource = Backbone.View.extend({
+	template: _.template($('#tmpl-storage-resource').html()),
+	className: 'resource',
+	lastSyncValue: null,
+
+	initialize: function() {
+		var instance = this;
+
+		this.lastSyncValue = this.model.get('value');
+
+		this.model.on('change', function(model) {
+			if(Math.floor(instance.lastSyncValue) < Math.floor(model.get('value')) || Math.floor(instance.lastSyncValue) > Math.floor(model.get('value'))) {
+				instance.lastSyncValue = model.get('value');
+				instance.render();
+			}
+		});
+	},
+
+	render: function() {
+		this.$el.html(this.template({resource: this.model}));
+		return this.el;
+	}
+});

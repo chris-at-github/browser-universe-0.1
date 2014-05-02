@@ -7,6 +7,7 @@ Universe.Factory = {
 	modal: null,
 	building: null,
 	resource: null,
+	resourceWorker: null,
 
 	getModal: function() {
 		if(this.modal === null) {
@@ -36,6 +37,14 @@ Universe.Factory = {
 		}
 
 		return this.resource;
+	},
+
+	getResourceWorker: function() {
+		if(this.resourceWorker === null) {
+			this.resourceWorker = new Universe.ResourceWorker();
+		}
+
+		return this.resourceWorker;
 	}
 };
 

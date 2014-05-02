@@ -11,6 +11,21 @@
 	</head>
 	<body>
 
+		<script type="text/template" id="tmpl-storage-resource">
+			<ul class="attributes">
+				<li>
+					<span class="attributes-title">Name:</dt>
+					<span class="attributes-data"><%= resource.get('name') %></span>
+				</li>
+				<li>
+					<span class="attributes-title">Wert:</dt>
+					<span class="attributes-data"><%= resource.get('value') %></span>
+				</li>
+			</ul>
+		</script>
+
+		<!-- <button class="action-button-pause">Pause</button> -->
+
 		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript">!window.jQuery && document.write(unescape('%3Cscript type="text/javascript" src="/js/libraries/jquery-2.1.0.min.js"%3E%3C/script%3E'))</script>
 
@@ -27,25 +42,64 @@
 		<script type="text/javascript">
 			$(function() {
 				var Page 		= $('body');
-				var Ore			= Universe.Factory.getResource().get(1);
-				var Quartz	= Universe.Factory.getResource().get(2);
+				var OreDeposit	= Universe.Factory.getResource().get(1);
+				var Ore					= Universe.Factory.getResource().get(2);
+
+				var StorageOreDeposit = new Universe.Models.StorageResource({
+					extend: OreDeposit,
+					value: 6
+				});
 
 				var StorageOre = new Universe.Models.StorageResource({
 					extend: Ore
 				});
-				var QuartzQuartz = new Universe.Models.StorageResource({
-					extend: Quartz
+
+				OreDepositWorker = new Universe.ResourceWorkerItem({
+					model: StorageOreDeposit,
+					value: StorageOreDeposit.get('value'),
+					rate: -0.5,
+					min: 0,
+
+					onMin: function() {
+						OreWorker.set('pause', true);
+					}
 				});
 
-				var Worker 			= new Universe.ResourceWorker();
-				var WorkerItem	= new Universe.ResourceWorkerItem({
-					value: 1,
-					rate: -2
+				OreWorker = new Universe.ResourceWorkerItem({
+					model: StorageOre,
+					value: StorageOre.get('value'),
+					rate: 0.5,
+					max: 3,
+
+					onMax: function() {
+						console.log('Warenabholung');
+						this.value = 0;
+						this.pause = false;
+					}
 				});
 
-				Worker
-					.add(WorkerItem)
-					.start();
+				Universe.Factory.getResourceWorker().add(OreWorker);
+				Universe.Factory.getResourceWorker().add(OreDepositWorker);
+
+				var collection = new Universe.Collections.StorageResource();
+						collection.add(StorageOreDeposit);
+						collection.add(StorageOre);
+
+				var view = new Universe.Views.StorageResourceCollection({
+					collection: collection
+				});
+				Page.append(view.render());
+
+				// var pause = false;
+				// $('.action-button-pause').bind('click', function() {
+				// 	if(pause === true) {
+				// 		Worker.set('pause', false);
+				// 		pause = false;
+				// 	} else {
+				// 		Worker.set('pause', true);
+				// 		pause = true;
+				// 	}
+				// });
 			});
 		</script>
 	</body>
