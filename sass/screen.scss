@@ -53,23 +53,21 @@ p, table, dl, fieldset {
 }
 
 h1, .h1 {
-	margin: 15px 0 10px 0;
+	margin: 0 0 25px 0;
 	font-weight: normal;
-	font-size: 22px;
+	font-size: 16px;
 }
 
 h2, .h2 {
-	margin: 25px 0 10px 0;
-	font-weight: normal;
-	font-size: 15px;
-}
-
-* h2:first-child, * .h2:first-child {
-	margin: 0 0 10px 0;
+	& {
+		margin: 0 0 15px 0;
+		font-weight: normal;
+		font-size: 14px;
+	}
 }
 
 h3, .h3 {
-	margin: 20px 0 0 0;
+	margin: 0 0 10px 0;
 	font-weight: bold;
 	font-size: 14px;
 }
@@ -199,6 +197,68 @@ nav a:hover, nav a:focus, nav a:active {
 	zoom: 1;
 }
 
+// clearfix
+// -------------------------------------------------------------------------------------
+.grid-container {
+  margin: 0 -5px;
+}
+
+.grid {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  padding: 0 5px;
+  @include box-sizing(border-box);
+}
+
+.grid-12 {
+  width: 100%;
+}
+
+.grid-11 {
+  width: 91.66666667%;
+}
+
+.grid-10 {
+  width: 83.33333333%;
+}
+
+.grid-9 {
+  width: 75%;
+}
+
+.grid-8 {
+  width: 66.66666667%;
+}
+
+.grid-7 {
+  width: 58.33333333%;
+}
+
+.grid-6 {
+  width: 50%;
+}
+
+.grid-5 {
+  width: 41.66666667%;
+}
+
+.grid-4 {
+  width: 33.33333333%;
+}
+
+.grid-3 {
+  width: 25%;
+}
+
+.grid-2 {
+  width: 16.66666667%;
+}
+
+.grid-1 {
+  width: 8.33333333%;
+}
+
 // Layout
 // -------------------------------------------------------------------------------------
 #sidebar {
@@ -210,18 +270,40 @@ nav a:hover, nav a:focus, nav a:active {
 }
 
 .container {
-	margin: 10px 0 0 0;
-	padding: 10px;
-	border: 3px solid $grey-lighter;
-	background: #fff;
+	& {
+		margin: 10px 0 0 0;
+		padding: 10px;
+		border: 3px solid $grey-lighter;
+		background: #fff;
+	}
+
+	& > header {
+		margin: 0 0 10px 0;
+		font-size: 11px;
+		text-transform: uppercase;
+	}
 }
 
-.container:first-child {
+* > .container:first-child {
 	margin: 0;
 }
 
 .container > *:last-child {
 	margin: 0;
+}
+
+// Container (grau)
+// -------------------------------------------------------------------------------------
+.container-grey {
+	& {
+		padding: 10px;
+		border: 0;
+		background: $grey-light;
+	}
+
+	& > header {
+		color: lighten($grey-dark, 45%);
+	}
 }
 
 // Objects
@@ -354,4 +436,59 @@ button, .button {
 	padding: 10px;
 	border: 3px solid $grey-lighter;
 	background: #fff;
+}
+
+.modal-header {
+	margin: -10px -10px 10px -10px;
+	padding: 10px;
+	background: $grey-dark;
+	color: $grey-light;
+}
+
+.modal-header.modal-header-folded {
+	& {
+		padding: 6px 10px;
+	}
+
+	h1, .h1 {
+		margin: 0;
+		line-height: 1;
+	}
+
+	.modal-header-body {
+		display: none;
+	}
+}
+
+.modal-placeholder {
+	width: 640px;
+	min-height: 480px;
+	margin: 10px auto;
+	padding: 10px;
+	border: 3px solid $grey-lighter;
+	background: #fff;
+}
+
+// Resource
+// -------------------------------------------------------------------------------------
+.resource {
+	.resource-value {
+		width: 35px;
+		float: left;
+		padding: 4px 0;
+		background: $orange;
+		color: lighten($orange, 35%);
+		text-align: center;
+	}
+
+	.resource-name {
+		display: block;
+		margin: 0 0 0 35px;
+		padding: 4px 4px 4px 8px;
+		background: $grey;
+	}
+
+	& + & {
+		margin: 5px 0 0 0;
+	}
 }

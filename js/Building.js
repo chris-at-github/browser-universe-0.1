@@ -1,6 +1,7 @@
 Universe.Models.Building = Backbone.Model.extend({
 	defaults: {
-		name: null
+		name: null,
+		description: null
 	}
 });
 

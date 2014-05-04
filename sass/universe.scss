@@ -16,6 +16,14 @@ $blue-dark:		#007dad;
 $orange:			#f15c22;
 $orange-dark:	#c65e37;
 
+// Mixin
+// -------------------------------------------------------------------------------------
+@mixin box-sizing($box-sizing) {
+  -webkit-box-sizing: $box-sizing;
+  -moz-box-sizing: $box-sizing;
+  box-sizing: $box-sizing;
+}
+
 // Animation
 // -------------------------------------------------------------------------------------
 @-webkit-keyframes rotate {

@@ -122,6 +122,7 @@ Universe.Views.PlanetBuilding = Backbone.View.extend({
 	tagName: 'li',
 	actions: null,
 	planet: null,
+	worker: {},
 
 	events: {
 		'click .button-action-add': 'onAdd'
@@ -162,5 +163,37 @@ Universe.Views.PlanetBuilding = Backbone.View.extend({
 		if(this.planet !== null) {
 			this.planet.setBuilding(this.model);
 		}
+	}
+});
+
+// ---
+
+Universe.Views.PlanetOreMine = Universe.Views.PlanetBuilding.extend({
+	tagName: 'div',
+	template: _.template($('#tmpl-planet-oremine').html()),
+	resources: {},
+
+	initialize: function() {
+		this.resources.oreDeposit = new Universe.Models.StorageResource({
+			extend: Universe.Factory.getResource().get(1),
+			value: 700
+		});
+
+		this.worker.oreDeposit = new Universe.ResourceWorkerItem({
+			model: this.resources.oreDeposit,
+			value: this.resources.oreDeposit.get('value'),
+			rate: -0.5,
+			min: 0,
+
+			onMin: function() {
+				// OreWorker.set('pause', true);
+			}
+		});
+	},
+
+	render: function() {
+		this.$el.html(this.template({
+
+		}));
 	}
 });

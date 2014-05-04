@@ -147,12 +147,12 @@ Universe.Views.Modal = Backbone.View.extend({
 
 $(function() {
 
-	// Sidebar
-	Universe.Registry.Sidebar = new Universe.Views.Sidebar();
+	// // Sidebar
+	// Universe.Registry.Sidebar = new Universe.Views.Sidebar();
 
-	var Page = $('body');
-			// Page.append(Universe.Modal.render());
-			Page.append(Universe.Registry.Sidebar.render());
+	// var Page = $('body');
+	// 		// Page.append(Universe.Modal.render());
+	// 		Page.append(Universe.Registry.Sidebar.render());
 
 	// // Player registieren
 	// if(Universe.Collections.Player !== undefined) {

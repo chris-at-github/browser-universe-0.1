@@ -55,6 +55,11 @@ Universe.Fixtures.Building = [
 	{
 		id: 2,
 		name: 'Lager'
+	},
+	{
+		id: 3,
+		name: 'Erzmine',
+		description: '<p>Toffee oat cake topping donut sesame snaps. Unerdwear.com pie tootsie roll dragée tootsie roll fruitcake. Cotton candy cake toffee jelly.</p><p>Topping sweet apple pie sesame snaps jelly dragée. Chupa chups croissant wafer caramels. Dragée pie candy biscuit sweet roll bear claw. Gummi bears chocolate bar tiramisu.</p>'
 	}
 ];
 
